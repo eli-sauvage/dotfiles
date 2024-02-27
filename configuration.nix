@@ -118,7 +118,7 @@
 
   home-manager = {
     users = {
-      eli = import ../home-manager/home.nix;
+      eli = import ./home.nix;
     };
   };
   # Define a user account. Don't forget to set a password with ‘passwd’.
