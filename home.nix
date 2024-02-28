@@ -29,6 +29,11 @@
     enableAutosuggestions = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = ["git" "docker-compose" "tmux" ];
+      theme = "robbyrussell";
+    };
     shellAliases = {
       "ll" = "ls -l";
       "la" = "ls -la";
@@ -57,11 +62,11 @@
       recursive = true;
     };
     ".config/lazydocker/config.yml".source = mkOutOfStoreSymlink ./dotfiles/.config/lazydocker/config.yml;
-    ".oh-my-zsh" = {
-      source = mkOutOfStoreSymlink ./dotfiles/.oh-my-zsh;
-      recursive = true;
-    };
-    ".zshrc".source = mkOutOfStoreSymlink ./dotfiles/.zshrc;
+    # ".oh-my-zsh" = {
+    #   source = mkOutOfStoreSymlink ./dotfiles/.oh-my-zsh;
+    #   recursive = true;
+    # };
+    # ".zshrc".source = mkOutOfStoreSymlink ./dotfiles/.zshrc;
     ".tmux" = {
       source = mkOutOfStoreSymlink ./dotfiles/.tmux;
       recursive = true;
