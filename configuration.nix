@@ -8,16 +8,13 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./keyd.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelModules = [ "uinput" ];
-  services.udev.extraRules = ''
-    KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-  '';
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -57,36 +54,6 @@
   # Configure console keymap
   console.keyMap = "fr";
 
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      default = {
-        ids = [ "*" ];
-        settings = {
-          main = {
-            leftmeta = "layer(leftmeta)";
-          };
-          "leftmeta:M" = {
-            back = "f1";
-            forward = "f2";
-            refresh = "f3";
-            zoom = "f4";
-            scale = "f5";
-            brightnessdown = "f6";
-            brightnessup = "f7";
-            mute = "f8";
-            volumedown = "f9"; 
-            volumeup = "f10"; 
-            sleep = "f11";
-            backspace = "del";
-            left = "home";
-            right = "end";
-          };
-        };
-      };
-    };
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -96,7 +63,9 @@
       Enable = "Source,Sink,Media,Socket";
     };
   };
+
   # Enable sound with pipewire.
+  sound.enable = false;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -104,12 +73,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    wireplumber.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -120,7 +84,7 @@
       eli = import ./home.nix;
     };
   };
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+
   users.users.eli = {
     isNormalUser = true;
     description = "eli";
@@ -144,27 +108,8 @@
     wget
     dotool
     git
+    python3
   ];
-
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
