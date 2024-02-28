@@ -29,6 +29,7 @@
     enableAutosuggestions = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
+    initExtra = "tmux";
     oh-my-zsh = {
       enable = true;
       plugins = ["git" "docker-compose" "tmux" ];
