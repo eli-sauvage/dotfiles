@@ -5,8 +5,6 @@
   home.homeDirectory = "/home/eli";
   home.stateVersion = "23.11"; # Don't change
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
@@ -25,6 +23,19 @@
   };
   programs.firefox.enable = true;
   programs.tmux.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    syntaxHighlighting.enable = true;
+    shellAliases = {
+      "ll" = "ls -l";
+      "la" = "ls -la";
+      ".." = "cd ..";
+      "rebuild" = "sudo nixos-rebuild switch --flake ~/.config/nixos/";
+    };
+  };
+
 
   dconf.settings = {
     "org/gnome/Console" = {
@@ -32,14 +43,13 @@
       custom-front = "UbuntuMono Nerd Font Mono 11";
     };
   };
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
+
+  #dotfiles
   home.file = with config.lib.file; {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    #".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim;
     ".config/nvim" = {
       source = mkOutOfStoreSymlink ./dotfiles/.config/nvim;
       recursive = true;
@@ -57,17 +67,6 @@
     ".tmux.conf.local".source = mkOutOfStoreSymlink ./dotfiles/.tmux.conf.local;
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/eli/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
     EDITOR = "nvim";
   };
