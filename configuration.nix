@@ -9,6 +9,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./keyd.nix
+    ./sound.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -57,25 +58,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # bluetooth stuff
-  hardware.bluetooth.settings = {
-    General = {
-      Enable = "Source,Sink,Media,Socket";
-    };
-  };
-
-  # Enable sound with pipewire.
-  sound.enable = false;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-  };
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -88,19 +70,19 @@
   users.users.eli = {
     isNormalUser = true;
     description = "eli";
-    extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "audio" "docker" ];
     packages = with pkgs; [
-      firefox
-      obsidian
+      #obsidian
     ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages =
-    pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
+  #nixpkgs.config.permittedInsecurePackages =
+  #  pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
 
 
+  virtualisation.docker.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = "eli";
@@ -8,21 +8,23 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   fonts.fontconfig.enable = true;
-  home.packages = [
-    (pkgs.nerdfonts.override { fonts = [ "UbuntuMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+  home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
+    obsidian
+    lazydocker
+    ripgrep
+    unzip
   ];
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages =
+    pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
   programs.neovim = {
     enable = true;
     vimAlias = true;
     defaultEditor = true;
   };
+  programs.firefox.enable = true;
+  programs.tmux.enable = true;
 
   dconf.settings = {
     "org/gnome/Console" = {
@@ -39,16 +41,20 @@
     # ".screenrc".source = dotfiles/screenrc;
     #".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim;
     ".config/nvim" = {
-      source = ./dotfiles/nvim;
+      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.config/nvim;
       recursive = true;
     };
-
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    ".config/lazydocker/config.yml".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.config/lazydocker/config.yml;
+    ".oh-my-zsh" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.oh-my-zsh;
+      recursive = true;
+    };
+    ".tmux" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.tmux;
+      recursive = true;
+    };
+    ".tmux.conf".source = ./dotfiles/.tmux/.tmux.conf;
+    ".tmux.conf.local".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.tmux.conf.local;
   };
 
   # Home Manager can also manage your environment variables through
@@ -63,7 +69,7 @@
   #  /etc/profiles/per-user/eli/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.

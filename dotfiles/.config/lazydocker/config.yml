@@ -1,0 +1,10 @@
+commandTemplates:
+  dockerCompose: docker compose
+  down: '{{ .DockerCompose }} down -t 0'
+  restartService: '{{ .DockerCompose }} restart {{ .Service.Name }} -t 0'
+customCommands:
+  containers:
+  - name: downup
+    attach: false
+    command: '{{ .DockerCompose }} down -t 0 && {{ .DockerCompose }} up -d'
+    serviceNames: []
