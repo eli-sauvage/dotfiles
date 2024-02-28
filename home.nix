@@ -12,7 +12,9 @@
     lazydocker
     ripgrep
     unzip
-    trashy
+    trash-cli
+    tig
+    lazygit
   ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages =
@@ -29,7 +31,6 @@
     enableAutosuggestions = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    initExtra = "tmux";
     oh-my-zsh = {
       enable = true;
       plugins = ["git" "docker-compose" "tmux" ];
