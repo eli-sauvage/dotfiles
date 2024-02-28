@@ -34,27 +34,27 @@
   };
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file = {
+  home.file = with config.lib.file; {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
     #".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim;
     ".config/nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.config/nvim;
+      source = mkOutOfStoreSymlink ./dotfiles/.config/nvim;
       recursive = true;
     };
-    ".config/lazydocker/config.yml".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.config/lazydocker/config.yml;
+    ".config/lazydocker/config.yml".source = mkOutOfStoreSymlink ./dotfiles/.config/lazydocker/config.yml;
     ".oh-my-zsh" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.oh-my-zsh;
+      source = mkOutOfStoreSymlink ./dotfiles/.oh-my-zsh;
       recursive = true;
     };
     ".tmux" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.tmux;
+      source = mkOutOfStoreSymlink ./dotfiles/.tmux;
       recursive = true;
     };
-    ".tmux.conf".source = ./dotfiles/.tmux/.tmux.conf;
-    ".tmux.conf.local".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.tmux.conf.local;
+    ".tmux.conf".source = mkOutOfStoreSymlink ./dotfiles/.tmux/.tmux.conf;
+    ".tmux.conf.local".source = mkOutOfStoreSymlink ./dotfiles/.tmux.conf.local;
   };
 
   # Home Manager can also manage your environment variables through
