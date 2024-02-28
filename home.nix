@@ -12,6 +12,7 @@
     lazydocker
     ripgrep
     unzip
+    trashy
   ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages =
@@ -33,6 +34,7 @@
       "la" = "ls -la";
       ".." = "cd ..";
       "rebuild" = "sudo nixos-rebuild switch --flake ~/.config/nixos/";
+      "trash" = "trashy";
     };
   };
 
@@ -59,6 +61,7 @@
       source = mkOutOfStoreSymlink ./dotfiles/.oh-my-zsh;
       recursive = true;
     };
+    ".zshrc".source = mkOutOfStoreSymlink ./dotfiles/.zshrc;
     ".tmux" = {
       source = mkOutOfStoreSymlink ./dotfiles/.tmux;
       recursive = true;

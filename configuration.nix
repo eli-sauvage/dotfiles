@@ -67,13 +67,13 @@
     };
   };
 
+  programs.zsh.enable = true;
   users.users.eli = {
     isNormalUser = true;
     description = "eli";
     extraGroups = [ "networkmanager" "wheel" "input" "audio" "docker" ];
-    packages = with pkgs; [
-      #obsidian
-    ];
+    packages = with pkgs; [];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
