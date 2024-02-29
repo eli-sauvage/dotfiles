@@ -41,7 +41,6 @@
       "la" = "ls -la";
       ".." = "cd ..";
       "rebuild" = "sudo nixos-rebuild switch --flake ~/.config/nixos/";
-      "trash" = "trashy";
     };
   };
 
