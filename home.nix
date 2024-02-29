@@ -1,13 +1,16 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home.username = "eli";
   home.homeDirectory = "/home/eli";
   home.stateVersion = "23.11"; # Don't change
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
+    (nerdfonts.override {fonts = ["UbuntuMono"];})
     obsidian
     lazydocker
     ripgrep
@@ -33,7 +36,7 @@
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "docker-compose" "tmux" ];
+      plugins = ["git" "docker-compose" "tmux"];
       theme = "robbyrussell";
     };
     shellAliases = {
@@ -43,7 +46,6 @@
       "rebuild" = "sudo nixos-rebuild switch --flake ~/.config/nixos/";
     };
   };
-
 
   dconf.settings = {
     "org/gnome/Console" = {

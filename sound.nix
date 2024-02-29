@@ -1,4 +1,4 @@
-{...}:{
+{...}: {
   # bluetooth stuff
   hardware.bluetooth.settings = {
     General = {
@@ -16,5 +16,5 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
- };
+  };
 }

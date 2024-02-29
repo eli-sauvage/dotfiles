@@ -1,11 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  config,
+  pkgs,
+  ...
+}: {
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -49,13 +50,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-
   programs.zsh.enable = true;
   users.users.eli = {
     isNormalUser = true;
     description = "eli";
     initialPassword = "mdp";
-    extraGroups = [ "networkmanager" "wheel" "input" "audio" "docker" ];
+    extraGroups = ["networkmanager" "wheel" "input" "audio" "docker"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -64,7 +64,6 @@
   nixpkgs.config.allowUnfree = true;
   #nixpkgs.config.permittedInsecurePackages =
   #  pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
-
 
   virtualisation.docker.enable = true;
   # List packages installed in system profile. To search, run:

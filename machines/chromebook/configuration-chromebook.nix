@@ -1,7 +1,8 @@
-
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration-chromebook.nix
     ./configuration.nix
@@ -16,7 +17,6 @@
       eli = import ./home.nix;
     };
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -1,10 +1,9 @@
-{...}:
-{
+{...}: {
   services.keyd = {
     enable = true;
     keyboards = {
       default = {
-        ids = [ "*" ];
+        ids = ["*"];
         settings = {
           main = {
             leftmeta = "layer(leftmeta)";
@@ -18,8 +17,8 @@
             brightnessdown = "f6";
             brightnessup = "f7";
             mute = "f8";
-            volumedown = "f9"; 
-            volumeup = "f10"; 
+            volumedown = "f9";
+            volumeup = "f10";
             sleep = "f11";
             backspace = "del";
             left = "home";

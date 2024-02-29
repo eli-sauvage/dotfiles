@@ -13,38 +13,43 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = inputs@{ self, nixpkgs, nixos-generators, ... }: {
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    nixos-generators,
+    ...
+  }: {
     nixosConfigurations = {
-	nixos = nixpkgs.lib.nixosSystem {
-      	  system = "x86_64-linux";
-      	  modules = [ 
-            ./configuration-chromebook.nix
-       	    inputs.home-manager.nixosModules.default
-      	  ];
-	};
-	dell-g3 = nixpkgs.lib.nixosSystem {
-      	  system = "x86_64-linux";
-      	  modules = [ 
-            ./configuration-dell-g3.nix
-       	    inputs.home-manager.nixosModules.default
-      	  ];
-	};
-	vbox = nixpkgs.lib.nixosSystem {
-      	  system = "x86_64-linux";
-      	  modules = [ 
-            ./configuration-vbox.nix
-       	    inputs.home-manager.nixosModules.default
-      	  ];
-	};
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./machines/chromebook/configuration-chromebook.nix
+          inputs.home-manager.nixosModules.default
+        ];
       };
-      packages.x86_64-linux = {
-	live = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-	  modules = [
-	    ./configuration-iso.nix
-	  ];
-	  format = "iso";
-	};
+      dell-g3 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./machines/dell-g3/configuration-dell-g3.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
+      vbox = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./machines/vbox/configuration-vbox.nix
+          inputs.home-manager.nixosModules.default
+        ];
       };
     };
-  }
+    packages.x86_64-linux = {
+      live = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        modules = [
+          ./machines/iso/configuration-iso.nix
+        ];
+        format = "iso";
+      };
+    };
+  };
+}

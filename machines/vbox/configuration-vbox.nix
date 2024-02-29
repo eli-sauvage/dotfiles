@@ -1,17 +1,25 @@
-
-
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
+    ./hardware-configuration-vbox.nix
     ./configuration.nix
+    ./keyd.nix
   ];
-  networking.wireless.enable = true;
-  networking.networkmanager.enable = false;
-  isoImage = {
-    makeEfiBootable = true;
-    makeUsbBootable = true;
+
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
+  networking.networkmanager.enable = true;
+  home-manager = {
+    users = {
+      eli = import ./home.nix;
+    };
   };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

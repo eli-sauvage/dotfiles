@@ -1,22 +1,28 @@
-
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration-dell-g3.nix
     ./configuration.nix
     ./keyd.nix
     ./sound.nix
   ];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = false;
+  boot.loader.grub = {
+    enable = true;
+    useOSProber = true;
+    devices = ["nodev"];
+    efiSupport = true;
+  };
+
   networking.networkmanager.enable = true;
   home-manager = {
     users = {
       eli = import ./home.nix;
     };
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
