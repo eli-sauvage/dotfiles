@@ -22,6 +22,13 @@
        	    inputs.home-manager.nixosModules.default
       	  ];
 	};
+	vbox = nixpkgs.lib.nixosSystem {
+      	  system = "x86_64-linux";
+      	  modules = [ 
+            ./configuration-vbox.nix
+       	    inputs.home-manager.nixosModules.default
+      	  ];
+	};
       };
       packages.x86_64-linux = {
 	live = nixos-generators.nixosGenerate {
