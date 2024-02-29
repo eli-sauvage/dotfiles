@@ -75,5 +75,6 @@
     dotool
     git
     python3
+    gcc
   ];
 }
