@@ -7,7 +7,6 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
     ./keyd.nix
     ./sound.nix
   ];
@@ -19,7 +18,6 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -61,11 +59,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  home-manager = {
-    users = {
-      eli = import ./home.nix;
-    };
-  };
 
   programs.zsh.enable = true;
   users.users.eli = {

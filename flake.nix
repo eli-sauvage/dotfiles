@@ -8,14 +8,29 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
-  outputs = inputs@{ self, nixpkgs, ... }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [ 
-        ./configuration.nix
-        inputs.home-manager.nixosModules.default
-      ];
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-}
+  outputs = inputs@{ self, nixpkgs, nixos-generators, ... }: {
+    nixosConfigurations = {
+	nixos = nixpkgs.lib.nixosSystem {
+      	  system = "x86_64-linux";
+      	  modules = [ 
+            ./configuration-default.nix
+       	    inputs.home-manager.nixosModules.default
+      	  ];
+	};
+      };
+      packages.x86_64-linux = {
+	live = nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+	  modules = [
+	    ./configuration-iso.nix
+	  ];
+	  format = "iso";
+	};
+      };
+    };
+  }
