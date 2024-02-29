@@ -22,6 +22,13 @@
        	    inputs.home-manager.nixosModules.default
       	  ];
 	};
+	dell-g3 = nixpkgs.lib.nixosSystem {
+      	  system = "x86_64-linux";
+      	  modules = [ 
+            ./configuration-dell-g3.nix
+       	    inputs.home-manager.nixosModules.default
+      	  ];
+	};
 	vbox = nixpkgs.lib.nixosSystem {
       	  system = "x86_64-linux";
       	  modules = [ 
