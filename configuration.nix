@@ -54,6 +54,7 @@
   users.users.eli = {
     isNormalUser = true;
     description = "eli";
+    initialPassword = "mdp";
     extraGroups = [ "networkmanager" "wheel" "input" "audio" "docker" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
