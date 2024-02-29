@@ -18,7 +18,7 @@
 	nixos = nixpkgs.lib.nixosSystem {
       	  system = "x86_64-linux";
       	  modules = [ 
-            ./configuration-default.nix
+            ./configuration-chromebook.nix
        	    inputs.home-manager.nixosModules.default
       	  ];
 	};
