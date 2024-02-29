@@ -7,6 +7,7 @@
     ./configuration.nix
   ];
   networking.wireless.enable = true;
+  networking.networkmanager.enable = false;
   isoImage = {
     makeEfiBootable = true;
     makeUsbBootable = true;
