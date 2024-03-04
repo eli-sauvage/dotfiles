@@ -41,6 +41,13 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+      gce = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./machines/gce/configuration-gce.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
     };
     packages.x86_64-linux = {
       live = nixos-generators.nixosGenerate {
