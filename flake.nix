@@ -12,11 +12,16 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-extras = {
+      url = "sourcehut:~dblsaiko/nix-extras";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs @ {
     self,
     nixpkgs,
     nixos-generators,
+    nix-extras,
     ...
   }: {
     nixosConfigurations = {
@@ -25,6 +30,8 @@
         modules = [
           ./machines/chromebook/configuration-chromebook.nix
           inputs.home-manager.nixosModules.default
+          # nix-extras.nixosModules.nixosFull
+          # nix-extras.packages
         ];
       };
       dell-g3 = nixpkgs.lib.nixosSystem {

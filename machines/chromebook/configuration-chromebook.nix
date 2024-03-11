@@ -5,16 +5,16 @@
 }: {
   imports = [
     ./hardware-configuration-chromebook.nix
-    ./configuration.nix
-    ./keyd.nix
-    ./sound.nix
+    ../../configuration.nix
+    ../../keyd.nix
+    ../../sound.nix
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   networking.networkmanager.enable = true;
   home-manager = {
     users = {
-      eli = import ./home.nix;
+      eli = import ../../home.nix;
     };
   };
 

@@ -11,13 +11,15 @@
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     (nerdfonts.override {fonts = ["UbuntuMono"];})
-    obsidian
-    lazydocker
+    #obsidian
+    #lazydocker
     ripgrep
     unzip
     trash-cli
     tig
     lazygit
+    #google-cloud-sdk
+    htop
   ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages =

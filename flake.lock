@@ -21,6 +21,26 @@
         "type": "github"
       }
     },
+    "nix-extras": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1702829605,
+        "narHash": "sha256-oUOUrWgyr9a16ggDR8Sk8QWmPrHlS2tbR5BR7vwvOTs=",
+        "owner": "~dblsaiko",
+        "repo": "nix-extras",
+        "rev": "9f6228f4b4bf6cbc94fb19240dc55940a00dd02d",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~dblsaiko",
+        "repo": "nix-extras",
+        "type": "sourcehut"
+      }
+    },
     "nixlib": {
       "locked": {
         "lastModified": 1708821942,
@@ -76,6 +96,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nix-extras": "nix-extras",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs"
       }

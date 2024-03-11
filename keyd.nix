@@ -7,6 +7,7 @@
         settings = {
           main = {
             leftmeta = "layer(leftmeta)";
+            sleep = "timeout(noop, 2000, sleep)";
           };
           "leftmeta:M" = {
             back = "f1";

@@ -4,14 +4,21 @@
 {
   config,
   pkgs,
+  lib,
+  # nix-extras,
   ...
 }: {
+networking.firewall.enable = false;
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   networking.hostName = "nixos"; # Define your hostname.
 
+  #services.tailscale.enable = true;
+  #services.tailscale.useRoutingFeatures = "client";
+
   # Set your time zone.
-  time.timeZone = "Europe/Paris";
+  time.timeZone = "Asia/Kuala_Lumpur";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -64,8 +71,12 @@
   nixpkgs.config.allowUnfree = true;
   #nixpkgs.config.permittedInsecurePackages =
   #  pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
+  # services.altserver.enable = true;
+  # services.altserver.package = nix-extras.packages.x86_64-linux.altserver;
+  # services.anisette-server.enable = lib.mkForce false;
 
-  virtualisation.docker.enable = true;
+
+  #virtualisation.docker.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -75,5 +86,8 @@
     git
     python3
     gcc
+    gnomeExtensions.appindicator
+  libimobiledevice
+  ifuse # optional, to mount using 'ifuse'
   ];
 }
