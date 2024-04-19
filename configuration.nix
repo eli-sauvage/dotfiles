@@ -34,13 +34,21 @@ networking.firewall.enable = false;
     LC_TELEPHONE = "fr_FR.UTF-8";
     LC_TIME = "fr_FR.UTF-8";
   };
+  
+  #######GNOME#####
+  # # Enable the X11 windowing system.
+  # services.xserver.enable = true;
+  #
+  # # Enable the GNOME Desktop Environment.
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
-  # Enable the X11 windowing system.
+  #######PLASMA#######
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  
+  services.xserver.displayManager.defaultSession = "plasmawayland";
 
   # Configure keymap in X11
   services.xserver = {
@@ -54,9 +62,6 @@ networking.firewall.enable = false;
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   programs.zsh.enable = true;
   users.users.eli = {
     isNormalUser = true;
@@ -67,18 +72,15 @@ networking.firewall.enable = false;
     shell = pkgs.zsh;
   };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  #nixpkgs.config.permittedInsecurePackages =
-  #  pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
-  # services.altserver.enable = true;
-  # services.altserver.package = nix-extras.packages.x86_64-linux.altserver;
-  # services.anisette-server.enable = lib.mkForce false;
+  nixpkgs.config.permittedInsecurePackages =
+    pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
 
 
+  programs.partition-manager.enable = true;
   #virtualisation.docker.enable = true;
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  #virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "eli" ];
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -87,7 +89,7 @@ networking.firewall.enable = false;
     python3
     gcc
     gnomeExtensions.appindicator
-  libimobiledevice
-  ifuse # optional, to mount using 'ifuse'
+    #libimobiledevice
+    #ifuse
   ];
 }

@@ -21,7 +21,7 @@
             volumedown = "f9";
             volumeup = "f10";
             sleep = "f11";
-            backspace = "del";
+            backspace = "delete";
             left = "home";
             right = "end";
           };

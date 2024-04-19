@@ -16,10 +16,14 @@
     ripgrep
     unzip
     trash-cli
-    tig
-    lazygit
+    #tig
+    #lazygit
     #google-cloud-sdk
     htop
+    #anki-bin
+    #flyctl
+    #github-cli
+    #nodejs_21
   ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages =
@@ -49,12 +53,12 @@
     };
   };
 
-  dconf.settings = {
-    "org/gnome/Console" = {
-      use-system-font = false;
-      custom-front = "UbuntuMono Nerd Font Mono 11";
-    };
-  };
+  # dconf.settings = {
+  #   "org/gnome/Console" = {
+  #     use-system-font = false;
+  #     custom-front = "UbuntuMono Nerd Font Mono 11";
+  #   };
+  # };
 
   #dotfiles
   home.file = with config.lib.file; {
