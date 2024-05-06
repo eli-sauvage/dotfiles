@@ -5,6 +5,9 @@
 }: {
   imports = [
     ./configuration.nix
+    "${nixos}/nixos/modules/installer/cd-dvd/iso-image.nix"
+    "${nixos}/nixos/modules/profiles/all-hardware.nix"
+    "${nixos}/nixos/modules/profiles/base.nix"
   ];
   networking.wireless.enable = true;
   networking.networkmanager.enable = false;
@@ -12,6 +15,39 @@
     makeEfiBootable = true;
     makeUsbBootable = true;
   };
+  # Adds terminus_font for people with HiDPI displays
+  console.packages = options.console.packages.default ++ [ pkgs.terminus_font ];
+
+  # ISO naming.
+  isoImage.isoName = "${config.isoImage.isoBaseName}-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}.iso";
+
+  # EFI booting
+  isoImage.makeEfiBootable = true;
+
+  # USB booting
+  isoImage.makeUsbBootable = true;
+
+  # Add Memtest86+ to the CD.
+  boot.loader.grub.memtest86.enable = true;
+
+  # An installation media cannot tolerate a host config defined file
+  # system layout on a fresh machine, before it has been formatted.
+  swapDevices = mkImageMediaOverride [ ];
+  fileSystems = mkImageMediaOverride config.lib.isoFileSystems;
+
+  boot.postBootCommands = ''
+    for o in $(</proc/cmdline); do
+      case "$o" in
+        live.nixos.passwd=*)
+          set -- $(IFS==; echo $o)
+          echo "nixos:$2" | ${pkgs.shadow}/bin/chpasswd
+          ;;
+      esac
+    done
+  '';
+
+  system.stateVersion = lib.mkDefault lib.trivial.release;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

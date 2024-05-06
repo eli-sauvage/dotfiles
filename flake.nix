@@ -16,7 +16,7 @@
       url = "sourcehut:~dblsaiko/nix-extras";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos.url = "nixpkgs/23.11-beta";
+    nixos.url = "nixpkgs/23.11";
   };
   outputs = inputs @ {
     self,
@@ -60,8 +60,7 @@
       live = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          ./machines/iso/configuration-iso.nix
+	  ./machines/iso/configuration.nix
         ];
       };
     };
