@@ -16,12 +16,14 @@
       url = "sourcehut:~dblsaiko/nix-extras";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos.url = "nixpkgs/23.11-beta";
   };
   outputs = inputs @ {
     self,
     nixpkgs,
     nixos-generators,
     nix-extras,
+    nixos,
     ...
   }: {
     nixosConfigurations = {
@@ -55,14 +57,12 @@
           inputs.home-manager.nixosModules.default
         ];
       };
-    };
-    packages.x86_64-linux = {
-      live = nixos-generators.nixosGenerate {
+      live = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           ./machines/iso/configuration-iso.nix
         ];
-        format = "iso";
       };
     };
   };
