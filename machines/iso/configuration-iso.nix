@@ -1,22 +1,20 @@
 {
-  config,
   pkgs,
+  lib,
+  config,
+  options,
+  modulesPath,
   ...
-}: {
+}: with lib;
+{
   imports = [
-    ./configuration.nix
-    "${nixos}/nixos/modules/installer/cd-dvd/iso-image.nix"
-    "${nixos}/nixos/modules/profiles/all-hardware.nix"
-    "${nixos}/nixos/modules/profiles/base.nix"
+    #../../configuration.nix
+    "${modulesPath}/installer/cd-dvd/iso-image.nix"
+    "${modulesPath}/profiles/all-hardware.nix"
+    "${modulesPath}/profiles/base.nix"
   ];
   networking.wireless.enable = true;
   networking.networkmanager.enable = false;
-  isoImage = {
-    makeEfiBootable = true;
-    makeUsbBootable = true;
-  };
-  # Adds terminus_font for people with HiDPI displays
-  console.packages = options.console.packages.default ++ [ pkgs.terminus_font ];
 
   # ISO naming.
   isoImage.isoName = "${config.isoImage.isoBaseName}-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}.iso";
@@ -45,8 +43,6 @@
       esac
     done
   '';
-
-  system.stateVersion = lib.mkDefault lib.trivial.release;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

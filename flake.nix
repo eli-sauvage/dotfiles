@@ -60,7 +60,7 @@
       live = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-	  ./machines/iso/configuration.nix
+	  ./machines/iso/configuration-iso.nix
         ];
       };
     };
