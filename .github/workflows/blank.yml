@@ -38,4 +38,8 @@ jobs:
         with:
           name: iso
           path: out/*.iso
+      - name: release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "out/*.iso"
 
