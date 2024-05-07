@@ -22,8 +22,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Check out code
         uses: actions/checkout@v3
-      - name: test
-        run: ls .github/workflows/Dockerfile
       - name: create docker image
         run: docker build -t nixos .github/workflows
       - name: build iso
