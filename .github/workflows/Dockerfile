@@ -2,4 +2,4 @@ FROM nixos/nix
 
 RUN nix-channel --update
 
-RUN nix-env --install nodejs_18
+RUN nix-env -iA nixpkgs.nodejs_18
