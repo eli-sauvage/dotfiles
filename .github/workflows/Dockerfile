@@ -2,4 +2,4 @@ FROM nixos/nix
 
 RUN nix-channel --update
 
-RUN nix-build -A pythonFull 'nodejs_18'
+RUN nix-env --install nodejs_18
