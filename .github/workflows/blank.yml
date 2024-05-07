@@ -26,7 +26,7 @@ jobs:
         run: docker build -t nix .github/workflows
       - name: build iso
         run: | 
-          docker run -v $PWD/out:/out -w/dotfiles nix bash .github/workflows/build-iso.sh
+          docker run -v $PWD/out:/out nix bash .github/workflows/build-iso.sh
       - name: iso artifact
         uses: actions/upload-artifact@v4
         with:
