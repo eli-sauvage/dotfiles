@@ -64,5 +64,14 @@
         ];
       };
     };
+    packages.x86_64-linux = {
+      iso = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+        ];
+        format = "iso";
+      };
+    };
   };
 }
