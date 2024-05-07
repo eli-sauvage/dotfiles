@@ -7,42 +7,23 @@
   ...
 }: with lib;
 {
-  imports = [
-    #../../configuration.nix
-    "${modulesPath}/installer/cd-dvd/iso-image.nix"
-    "${modulesPath}/profiles/all-hardware.nix"
-    "${modulesPath}/profiles/base.nix"
-  ];
-  networking.wireless.enable = true;
-  networking.networkmanager.enable = false;
-
-  # ISO naming.
-  isoImage.isoName = "${config.isoImage.isoBaseName}-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}.iso";
-
-  # EFI booting
-  isoImage.makeEfiBootable = true;
-
-  # USB booting
-  isoImage.makeUsbBootable = true;
-
-  # Add Memtest86+ to the CD.
-  boot.loader.grub.memtest86.enable = true;
-
-  # An installation media cannot tolerate a host config defined file
-  # system layout on a fresh machine, before it has been formatted.
-  swapDevices = mkImageMediaOverride [ ];
-  fileSystems = mkImageMediaOverride config.lib.isoFileSystems;
-
-  boot.postBootCommands = ''
-    for o in $(</proc/cmdline); do
-      case "$o" in
-        live.nixos.passwd=*)
-          set -- $(IFS==; echo $o)
-          echo "nixos:$2" | ${pkgs.shadow}/bin/chpasswd
-          ;;
-      esac
-    done
-  '';
+  networking.networkmanager.enable = true;
+  networking.wireless.userControlled.enable = true;
+  users.extraUsers.eli.extraGroups = [ "wheel" ];
+  home-manager = {
+    users = {
+      eli = import ../../home.nix;
+    };
+  };
+  programs.zsh.enable = true;
+  users.users.eli = {
+    isNormalUser = true;
+    description = "eli";
+    initialPassword = "mdp";
+    extraGroups = ["networkmanager" "wheel" "input" "audio" "docker"];
+    packages = with pkgs; [];
+    shell = pkgs.zsh;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

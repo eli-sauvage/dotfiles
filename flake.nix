@@ -68,23 +68,8 @@
       iso = nixos-generators.nixosGenerate {
         system = "x86_64-linux";
         modules = [
-	  networking.networkmanager.enable = true;
-          networking.wireless.userControlled.enable = true;
-          users.extraUsers.eli.extraGroups = [ "wheel" ];
-	  home-manager = {
-	    users = {
-	      eli = import ./home.nix;
-	    };
-	  };
-          programs.zsh.enable = true;
-          users.users.eli = {
-            isNormalUser = true;
-            description = "eli";
-            initialPassword = "mdp";
-            extraGroups = ["networkmanager" "wheel" "input" "audio" "docker"];
-            packages = with pkgs; [];
-            shell = pkgs.zsh;
-          };
+	  ./machines/iso/configuration-iso.nix
+          inputs.home-manager.nixosModules.default
         ];
         format = "iso";
       };
