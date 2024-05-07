@@ -22,8 +22,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Check out code
         uses: actions/checkout@v3
+      - name: test
+        run: ls -la
       - name: create docker image
-        run: docker build -t nixos .github/workflows/Dockerfile
+        run: docker build -t nixos dotfiles/.github/workflows/Dockerfile
       - name: build iso
         run: | 
           docker run -it -v $PWD:/dotfiles -w/dotfiles nix build .#nixosConfigurations.live.config.system.build.isoImage --extra-experimental-features nix-command --extra-experimental-features flakes
