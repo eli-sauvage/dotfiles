@@ -14,19 +14,19 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container: nixos/nix
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       #- uses: actions/checkout@v4
 
       # Runs a set of commands using the runners shell
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: create docker image
+        run: docker build -t nixos < .github/workflows/Dockerfile
       - name: build iso
         run: | 
-          git clone https://github.com/eli-sauvage/dotfiles
-          cd dotfiles
-          nix build .#nixosConfigurations.live.config.system.build.isoImage --extra-experimental-features nix-command --extra-experimental-features flakes
+          docker run -it -v $PWD:/dotfiles -w/dotfiles nix build .#nixosConfigurations.live.config.system.build.isoImage --extra-experimental-features nix-command --extra-experimental-features flakes
       - name: iso artifact
         uses: actions/upload-artifact@v4
         with:
