@@ -23,7 +23,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
       - name: create docker image
-        run: docker build -t nix .github/workflows
+        run: docker build -t nix -f .github/workflows/Dockerfile .
       - name: temp
         run: | 
           docker run -v $PWD/out:/out nix ls -l
