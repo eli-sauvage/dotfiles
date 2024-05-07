@@ -7,10 +7,6 @@
   ...
 }: with lib;
 {
-  imports = [ 
-    "${toString modulesPath}/profiles/minimal.nix"
-  ];
-
   networking.networkmanager.enable = true;
   networking.wireless.userControlled.enable = true;
   users.extraUsers.eli.extraGroups = [ "wheel" ];
