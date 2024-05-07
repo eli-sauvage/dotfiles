@@ -24,6 +24,12 @@ jobs:
         uses: actions/checkout@v3
       - name: create docker image
         run: docker build -t nix .github/workflows
+      - name: temp
+        run: | 
+          docker run -v $PWD/out:/out nix bash ls -l
+      - name: temp2
+        run: | 
+          docker run -v $PWD/out:/out nix bash pwd
       - name: build iso
         run: | 
           docker run -v $PWD/out:/out nix bash .github/workflows/build-iso.sh
