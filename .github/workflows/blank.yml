@@ -26,7 +26,7 @@ jobs:
         run: docker build -t nix .github/workflows
       - name: build iso
         run: | 
-          docker run -v $PWD:/dotfiles -w/dotfiles nix "nix-build .#nixosConfigurations.live.config.system.build.isoImage --extra-experimental-features nix-command --extra-experimental-features flakes"
+          docker run -v $PWD:/dotfiles -w/dotfiles nix bash .github/workflows/build-iso.sh
       - name: iso artifact
         uses: actions/upload-artifact@v4
         with:
