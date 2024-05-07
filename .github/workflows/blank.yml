@@ -42,4 +42,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "out/*.iso"
+          tag: ${GITHUB_SHA::7}
+          commit: main
 
