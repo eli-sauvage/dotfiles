@@ -1,6 +1,6 @@
 FROM nixos/nix
 
-WORKDIR dotfiles
+WORKDIR /dotfiles
 
 RUN nix-channel --update
 
