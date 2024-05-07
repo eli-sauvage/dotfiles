@@ -23,9 +23,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
       - name: test
-        run: ls -la
+        run: ls -laR .github
       - name: create docker image
-        run: docker build -t nixos dotfiles/.github/workflows/Dockerfile
+        run: docker build -t nixos .github/workflows/Dockerfile
       - name: build iso
         run: | 
           docker run -it -v $PWD:/dotfiles -w/dotfiles nix build .#nixosConfigurations.live.config.system.build.isoImage --extra-experimental-features nix-command --extra-experimental-features flakes
