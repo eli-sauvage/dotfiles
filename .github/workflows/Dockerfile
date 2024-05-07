@@ -4,6 +4,8 @@ RUN nix-channel --update
 
 RUN nix-env -iA nixpkgs.nodejs_18
 
-USER 1000
+USER nix:nix
 
-COPY --chown=1000:1000 . .
+RUN mkdir -p /home/nix
+
+COPY --chown=nix:nix . .
