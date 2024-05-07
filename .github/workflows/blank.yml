@@ -26,10 +26,10 @@ jobs:
         run: docker build -t nix .github/workflows
       - name: temp
         run: | 
-          docker run -v $PWD/out:/out nix bash ls -l
+          docker run -v $PWD/out:/out nix ls -l
       - name: temp2
         run: | 
-          docker run -v $PWD/out:/out nix bash pwd
+          docker run -v $PWD/out:/out nix pwd
       - name: build iso
         run: | 
           docker run -v $PWD/out:/out nix bash .github/workflows/build-iso.sh
