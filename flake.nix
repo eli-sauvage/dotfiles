@@ -69,7 +69,7 @@
         system = "x86_64-linux";
         modules = [
 	  ./machines/chromebook/iso-chromebook.nix
-          # inputs.home-manager.nixosModules.default
+          inputs.home-manager.nixosModules.default
         ];
         format = "iso";
       };
