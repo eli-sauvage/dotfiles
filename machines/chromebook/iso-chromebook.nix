@@ -11,7 +11,7 @@
     ./hardware-config-iso.nix
     #"${modulesPath}/installer/cd-dvd/channel.nix"
   ];
-  environment.systemPackages = with pkgs; [ firefox ]
+  # environment.systemPackages = with pkgs; [ firefox ]
 
   # nix.settings.experimental-features = ["nix-command" "flakes"];
   #
@@ -56,15 +56,14 @@
   # #
   #
   # #services.xserver.displayManager.defaultSession = "plasmawayland";
-  # services.xserver = {
-  #   enable = true;
-  #   desktopManager = {
-  #     xterm.enable = false;
-  #     lxqt.enable = true;
-  #     # xfce.enable = true;
-  #   };
-  #   displayManager.defaultSession = "lxqt";
-  # };
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce.enable = true;
+    };
+    displayManager.defaultSession = "xfce";
+  };
   #
   # # Configure keymap in X11
   # services.xserver = {
