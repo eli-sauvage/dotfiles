@@ -36,7 +36,10 @@
     defaultEditor = true;
   };
   programs.firefox.enable = true;
-  nixpkgs.config.firefox.speechSynthesisSupport = false;	
+  programs.firefox.package = pkgs.firefox.override {
+    cfg.speechSynthesisSupport = false;
+  };
+  	
   programs.tmux.enable = true;
   programs.zsh = {
     enable = true;
