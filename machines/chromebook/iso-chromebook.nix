@@ -11,7 +11,6 @@
     ./hardware-config-iso.nix
     "${modulesPath}/installer/cd-dvd/channel.nix"
   ];
-  isoImage.compressImage = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
