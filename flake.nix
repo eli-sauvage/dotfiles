@@ -68,7 +68,7 @@
       iso = nixos-generators.nixosGenerate {
         system = "x86_64-linux";
         modules = [
-#	  ./machines/iso/configuration-iso.nix
+	  ./machines/iso/configuration-iso.nix
 #          inputs.home-manager.nixosModules.default
         ];
         format = "iso";

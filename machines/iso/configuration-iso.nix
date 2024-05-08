@@ -10,10 +10,6 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   networking.hostName = "nixos"; # Define your hostname.
-
-  #services.tailscale.enable = true;
-  #services.tailscale.useRoutingFeatures = "client";
-
   # Set your time zone.
   time.timeZone = "Asia/Kuala_Lumpur";
 
@@ -31,14 +27,14 @@
     LC_TELEPHONE = "fr_FR.UTF-8";
     LC_TIME = "fr_FR.UTF-8";
   };
+
   networking.networkmanager.enable = true;
-  networking.wireless.userControlled.enable = true;
   users.extraUsers.eli.extraGroups = [ "wheel" ];
-  home-manager = {
-    users = {
-      eli = import ../../home.nix;
-    };
-  };
+  #home-manager = {
+  #  users = {
+  #    eli = import ../../home.nix;
+  #  };
+  #};
   programs.zsh.enable = true;
   users.users.eli = {
     isNormalUser = true;
