@@ -53,14 +53,16 @@
   #services.xserver.displayManager.sddm.enable = true;
   #services.xserver.desktopManager.plasma5.enable = true;
   #
+
   #services.xserver.displayManager.defaultSession = "plasmawayland";
   services.xserver = {
     enable = true;
     desktopManager = {
       xterm.enable = false;
-      xfce.enable = true;
+      lxqt.enable = true;
+      # xfce.enable = true;
     };
-    displayManager.defaultSession = "xfce";
+    displayManager.defaultSession = "lxqt";
   };
 
   # Configure keymap in X11
