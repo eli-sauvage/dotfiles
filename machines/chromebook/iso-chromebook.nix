@@ -10,6 +10,7 @@
   imports = [
     ./hardware-config-iso.nix
     #"${modulesPath}/installer/cd-dvd/channel.nix"
+    "${modulesPath}/profiles/minimal.nix"
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

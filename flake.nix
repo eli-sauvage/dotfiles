@@ -60,7 +60,7 @@
       live = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-	  ./machines/iso/configuration-iso.nix
+	        ./machines/iso/configuration-iso.nix
         ];
       };
     };
@@ -68,7 +68,7 @@
       iso = nixos-generators.nixosGenerate {
         system = "x86_64-linux";
         modules = [
-	  ./machines/chromebook/iso-chromebook.nix
+	       ./machines/chromebook/iso-chromebook.nix
           inputs.home-manager.nixosModules.default
         ];
         format = "iso";
