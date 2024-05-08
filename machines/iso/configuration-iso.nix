@@ -49,6 +49,15 @@
   #services.xserver.desktopManager.plasma5.enable = true;
   #
   #services.xserver.displayManager.defaultSession = "plasmawayland";
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce.enable = true;
+    };
+    displayManager.defaultSession = "xfce";
+  };
+
   # Configure keymap in X11
   services.xserver = {
     layout = "fr";
