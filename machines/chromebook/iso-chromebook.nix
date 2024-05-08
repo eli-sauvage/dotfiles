@@ -34,11 +34,11 @@
 
   networking.networkmanager.enable = true;
   users.extraUsers.eli.extraGroups = [ "wheel" ];
-  #home-manager = {
-  #  users = {
-  #    eli = import ../../home.nix;
-  #  };
-  #};
+  home-manager = {
+    users = {
+      eli = import ../../home.nix;
+    };
+  };
   programs.zsh.enable = true;
   users.users.eli = {
     isNormalUser = true;

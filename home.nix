@@ -13,6 +13,7 @@
     (nerdfonts.override {fonts = ["UbuntuMono"];})
     #obsidian
     #lazydocker
+    baobab
     ripgrep
     unzip
     trash-cli
