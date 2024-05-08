@@ -11,6 +11,7 @@
     ./hardware-config-iso.nix
     #"${modulesPath}/installer/cd-dvd/channel.nix"
   ];
+  environment.systemPackages = with pkgs; [ firefox ]
 
   # nix.settings.experimental-features = ["nix-command" "flakes"];
   #
