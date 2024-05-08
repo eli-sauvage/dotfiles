@@ -12,67 +12,67 @@
     #"${modulesPath}/installer/cd-dvd/channel.nix"
   ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  networking.hostName = "nixos"; # Define your hostname.
-  # Set your time zone.
-  time.timeZone = "Asia/Kuala_Lumpur";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
-  };
-
-  networking.networkmanager.enable = true;
-  users.extraUsers.eli.extraGroups = [ "wheel" ];
-  home-manager = {
-    users = {
-      eli = import ../../home.nix;
-    };
-  };
-  programs.zsh.enable = true;
-  users.users.eli = {
-    isNormalUser = true;
-    description = "eli";
-    initialPassword = "mdp";
-    extraGroups = ["networkmanager" "wheel" "input" "audio" "docker"];
-    packages = with pkgs; [];
-    shell = pkgs.zsh;
-  };
-  #services.xserver.enable = true;
-  #services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
+  # nix.settings.experimental-features = ["nix-command" "flakes"];
   #
-
-  #services.xserver.displayManager.defaultSession = "plasmawayland";
-  services.xserver = {
-    enable = true;
-    desktopManager = {
-      xterm.enable = false;
-      lxqt.enable = true;
-      # xfce.enable = true;
-    };
-    displayManager.defaultSession = "lxqt";
-  };
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "fr";
-    xkbVariant = "";
-  };
-
-  # Configure console keymap
-  console.keyMap = "fr";
+  # networking.hostName = "nixos"; # Define your hostname.
+  # # Set your time zone.
+  # time.timeZone = "Asia/Kuala_Lumpur";
+  #
+  # # Select internationalisation properties.
+  # i18n.defaultLocale = "en_US.UTF-8";
+  #
+  # i18n.extraLocaleSettings = {
+  #   LC_ADDRESS = "fr_FR.UTF-8";
+  #   LC_IDENTIFICATION = "fr_FR.UTF-8";
+  #   LC_MEASUREMENT = "fr_FR.UTF-8";
+  #   LC_MONETARY = "fr_FR.UTF-8";
+  #   LC_NAME = "fr_FR.UTF-8";
+  #   LC_NUMERIC = "fr_FR.UTF-8";
+  #   LC_PAPER = "fr_FR.UTF-8";
+  #   LC_TELEPHONE = "fr_FR.UTF-8";
+  #   LC_TIME = "fr_FR.UTF-8";
+  # };
+  #
+  # networking.networkmanager.enable = true;
+  # users.extraUsers.eli.extraGroups = [ "wheel" ];
+  # home-manager = {
+  #   users = {
+  #     eli = import ../../home.nix;
+  #   };
+  # };
+  # programs.zsh.enable = true;
+  # users.users.eli = {
+  #   isNormalUser = true;
+  #   description = "eli";
+  #   initialPassword = "mdp";
+  #   extraGroups = ["networkmanager" "wheel" "input" "audio" "docker"];
+  #   packages = with pkgs; [];
+  #   shell = pkgs.zsh;
+  # };
+  # #services.xserver.enable = true;
+  # #services.xserver.displayManager.sddm.enable = true;
+  # #services.xserver.desktopManager.plasma5.enable = true;
+  # #
+  #
+  # #services.xserver.displayManager.defaultSession = "plasmawayland";
+  # services.xserver = {
+  #   enable = true;
+  #   desktopManager = {
+  #     xterm.enable = false;
+  #     lxqt.enable = true;
+  #     # xfce.enable = true;
+  #   };
+  #   displayManager.defaultSession = "lxqt";
+  # };
+  #
+  # # Configure keymap in X11
+  # services.xserver = {
+  #   layout = "fr";
+  #   xkbVariant = "";
+  # };
+  #
+  # # Configure console keymap
+  # console.keyMap = "fr";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
