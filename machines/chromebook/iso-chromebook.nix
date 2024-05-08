@@ -9,7 +9,7 @@
 {
   imports = [
     ./hardware-config-iso.nix
-    <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
+    "${modulesPath}/installer/cd-dvd/channel.nix"
   ];
   isoImage.compressImage = true;
 
