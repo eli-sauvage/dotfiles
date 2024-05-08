@@ -7,6 +7,10 @@
   ...
 }: with lib;
 {
+  imports = [
+    "${modulesPath}/profiles/all-hardware.nix"
+  ];
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   networking.hostName = "nixos"; # Define your hostname.
