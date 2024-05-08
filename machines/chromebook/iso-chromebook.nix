@@ -9,7 +9,7 @@
 {
   imports = [
     ./hardware-config-iso.nix
-    "${modulesPath}/installer/cd-dvd/channel.nix"
+    #"${modulesPath}/installer/cd-dvd/channel.nix"
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
