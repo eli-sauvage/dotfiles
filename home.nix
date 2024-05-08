@@ -41,7 +41,6 @@
   	
   programs.tmux.enable = true;
 
-  users.users.eli.shell = pkgs.zsh;
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
