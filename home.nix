@@ -13,18 +13,17 @@
   home.packages = with pkgs; [
     (nerdfonts.override {fonts = ["UbuntuMono"];})
     #obsidian
-    #lazydocker
-    baobab
+    lazydocker
+    #baobab
     ripgrep
     unzip
     trash-cli
-    #tig
-    #lazygit
+    tig
+    lazygit
     #google-cloud-sdk
     htop
-    #anki-bin
     #flyctl
-    #github-cli
+    github-cli
     #nodejs_21
   ];
   nixpkgs.config.allowUnfree = true;
@@ -37,10 +36,12 @@
   };
   programs.firefox.enable = true;
   programs.firefox.package = pkgs.firefox.override {
-    cfg.speechSynthesisSupport = false;
+    cfg.speechSynthesisSupport = false; #saves 600mb
   };
   	
   programs.tmux.enable = true;
+
+  users.users.eli.shell = pkgs.zsh;
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
