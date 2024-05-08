@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  nixpkgs,
   ...
 }: {
   home.username = "eli";
@@ -35,6 +36,7 @@
     defaultEditor = true;
   };
   programs.firefox.enable = true;
+  nixpkgs.config.firefox.speechSynthesisSupport = false;	
   programs.tmux.enable = true;
   programs.zsh = {
     enable = true;
