@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: pull-build-push docker image
         run: |
-          docker pull ghcr.io/eli-sauvage/nixos-with-node
+          docker pull -vv ghcr.io/eli-sauvage/nixos-with-node
           docker build -t ghcr.io/eli-sauvage/nixos-with-node -f .github/workflows/Dockerfile.nixos-with-node .
           docker push ghcr.io/eli-sauvage/nixos-with-node
       - name: build iso
