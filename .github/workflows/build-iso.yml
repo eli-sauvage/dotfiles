@@ -34,8 +34,8 @@ jobs:
         with:
           context: .
           push: true
-          cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/nixos-with-node:latest
-          cache-to: type=inline
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           file: .github/workflows/Dockerfile.nixos-with-node
           tags: ghcr.io/${{ github.actor }}/nixos-with-node:latest
       # - name: pull-build-push docker image
