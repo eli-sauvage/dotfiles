@@ -15,6 +15,7 @@
     #obsidian
     lazydocker
     #baobab
+    du-dust
     ripgrep
     unzip
     trash-cli
