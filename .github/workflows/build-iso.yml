@@ -26,7 +26,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
       - name: create docker image
-        run: docker build -t nix -f .github/workflows/Dockerfile .
+        run: docker build -t nix -f .github/workflows/Dockerfile.nixos-with-node .
       - name: build iso
         run: | 
           docker run -v $PWD/out:/out nix "bash .github/workflows/build-iso.sh \
