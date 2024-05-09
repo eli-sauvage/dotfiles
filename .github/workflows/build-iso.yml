@@ -50,6 +50,6 @@ jobs:
         id: release-snapshot
         uses: ncipollo/release-action@v1
         with:
-          artifacts: out/*.iso
+          artifacts: result/iso/*.iso
           tag: ${{ steps.date.outputs.date }}
           commit: main
