@@ -2,13 +2,14 @@
   config,
   pkgs,
   modulesPath,
+  lib,
   ...
 }:{
   imports = [
     ./chromebook-specific.nix
     "${modulesPath}/profiles/minimal.nix"
   ];
-  fileSystems."/" =
+  fileSystems."/" = lib.mkForce
     { device = "/dev/disk/by-label/usbfs";
       fsType = "ext4";
       label = "nixos_usb";
