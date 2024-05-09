@@ -12,6 +12,7 @@
     #"${modulesPath}/installer/cd-dvd/channel.nix"
     "${modulesPath}/profiles/minimal.nix"
   ];
+  environment.noXlibs = mkForce false;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
