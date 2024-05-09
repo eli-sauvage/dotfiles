@@ -29,14 +29,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Build and push
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     context: .
-      #     push: true
-      #     pull: true
-      #     file: .github/workflows/Dockerfile.nixos-with-node
-      #     tags: ghcr.io/${{ github.actor }}/nixos-with-node:latest
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          pull: true
+          file: .github/workflows/Dockerfile.nixos-with-node
+          tags: ghcr.io/${{ github.actor }}/nixos-with-node:latest
       # - name: pull-build-push docker image
       #   run: |
       #     docker pull ghcr.io/eli-sauvage/nixos-with-node
