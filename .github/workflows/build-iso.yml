@@ -29,28 +29,15 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          pull: true
-          file: .github/workflows/Dockerfile.nixos-with-node
-          tags: ghcr.io/${{ github.actor }}/nixos-with-node:latest
-      # - name: pull-build-push docker image
-      #   run: |
-      #     docker pull ghcr.io/eli-sauvage/nixos-with-node
-      #     docker build -t ghcr.io/eli-sauvage/nixos-with-node -f .github/workflows/Dockerfile.nixos-with-node .
-      #     docker push ghcr.io/eli-sauvage/nixos-with-node
       - name: build iso
         run: | 
-          docker run -v $PWD/out:/out ghcr.io/eli-sauvage/nixos-with-node bash -c "nix build .#iso-persist --extra-experimental-features nix-command --extra-experimental-features flakes && \
-            mkdir -p /out && cp result/iso/*.iso /out"
+          docker run -v $PWD:/dotfiles ghcr.io/eli-sauvage/nixos-with-node bash -c \
+            "nix build .#iso --extra-experimental-features nix-command --extra-experimental-features flakes"
       - name: iso artifact
         uses: actions/upload-artifact@v4
         with:
           name: iso
-          path: out/*.iso
+          path: result/iso/*.iso
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M')"
