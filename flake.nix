@@ -78,6 +78,9 @@
         system = "x86_64-linux";
         modules = [
           ./machines/iso/iso-minimal-fs-in-usb.nix
+          {
+              isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+          }
         ];
         format = "iso";
       };
