@@ -8,6 +8,8 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+  hardware.opengl.enable = lib.mkForce false;
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
