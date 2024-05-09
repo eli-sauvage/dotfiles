@@ -24,12 +24,8 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
       - name: pull-build-push docker image
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           docker pull ghcr.io/eli-sauvage/nixos-with-node
           docker build -t ghcr.io/eli-sauvage/nixos-with-node -f .github/workflows/Dockerfile.nixos-with-node .
           docker push ghcr.io/eli-sauvage/nixos-with-node
