@@ -8,7 +8,6 @@
 }: with lib;
 {
   imports = [
-    ./hardware-config-iso.nix
     #"${modulesPath}/installer/cd-dvd/channel.nix"
     "${modulesPath}/profiles/minimal.nix"
   ];

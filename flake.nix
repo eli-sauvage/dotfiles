@@ -68,7 +68,8 @@
       iso = nixos-generators.nixosGenerate {
         system = "x86_64-linux";
         modules = [
-	       ./machines/chromebook/iso-chromebook.nix
+	       ./machines/iso/iso-configuration.nix
+	       ./machines/iso/chromebook-specific.nix
           inputs.home-manager.nixosModules.default
         ];
         format = "iso";
