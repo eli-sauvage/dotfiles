@@ -74,6 +74,13 @@
         ];
         format = "iso";
       };
+      iso-persist = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        modules = [
+          ./machines/iso/iso-minimal-fs-in-usb.nix
+        ];
+        format = "iso";
+      };
     };
   };
 }
