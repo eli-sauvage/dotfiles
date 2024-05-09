@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: build iso
         run: | 
-          docker run -v $PWD:/dotfiles ghcr.io/eli-sauvage/nixos-with-node bash -c \
+          docker run -v $PWD:/dotfiles -u 1001 ghcr.io/eli-sauvage/nixos-with-node bash -c \
             "nix build .#iso --extra-experimental-features nix-command --extra-experimental-features flakes"
       - name: iso artifact
         uses: actions/upload-artifact@v4
