@@ -57,7 +57,7 @@
           inputs.home-manager.nixosModules.default
         ];
       };
-      live-iso = nixos.lib.nixosSystem {
+      live-iso-chromebook = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
 	        ./machines/iso/iso-configuration.nix
