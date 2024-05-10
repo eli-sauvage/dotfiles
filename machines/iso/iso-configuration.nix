@@ -13,6 +13,10 @@
     ./chromebook-specific.nix
     ./fsusb/iso-image.nix
   ];
+
+  isoImage.compressImage = true;
+
+
   environment.noXlibs = mkForce false;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
