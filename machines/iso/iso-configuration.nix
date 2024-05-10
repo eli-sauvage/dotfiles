@@ -69,6 +69,12 @@
     };
     displayManager.defaultSession = "xfce";
   };
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true;
+    };
+  };
 
   # Configure keymap in X11
   services.xserver = {
