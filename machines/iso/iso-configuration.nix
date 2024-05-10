@@ -10,6 +10,8 @@
   imports = [
     #"${modulesPath}/installer/cd-dvd/channel.nix"
     "${modulesPath}/profiles/minimal.nix"
+    ./chromebook-specific
+    ./fsusb/iso-image.nix
   ];
   environment.noXlibs = mkForce false;
 
