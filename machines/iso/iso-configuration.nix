@@ -63,7 +63,7 @@
     };
     displayManager.defaultSession = "xfce";
   };
-  services.libinput = {
+  services.hardware.libinput = {
     enable = true;
     touchpad = {
       naturalScrolling = true;
