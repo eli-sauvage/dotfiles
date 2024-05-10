@@ -64,26 +64,26 @@
         ];
       };
     };
-    packages.x86_64-linux = {
-      iso = nixos-generators.nixosGenerate {
-        system = "x86_64-linux";
-        modules = [
-	       ./machines/iso/iso-configuration.nix
-	       ./machines/iso/chromebook-specific.nix
-          inputs.home-manager.nixosModules.default
-        ];
-        format = "iso";
-      };
-      iso-persist = nixos-generators.nixosGenerate {
-        system = "x86_64-linux";
-        modules = [
-          ./machines/iso/iso-minimal-fs-in-usb.nix
-          {
-              isoImage.squashfsCompression = "gzip -Xcompression-level 1";
-          }
-        ];
-        format = "iso";
-      };
-    };
+    # packages.x86_64-linux = {
+    #   iso = nixos-generators.nixosGenerate {
+    #     system = "x86_64-linux";
+    #     modules = [
+	  #      ./machines/iso/iso-configuration.nix
+	  #      ./machines/iso/chromebook-specific.nix
+    #       inputs.home-manager.nixosModules.default
+    #     ];
+    #     format = "iso";
+    #   };
+    #   iso-persist = nixos-generators.nixosGenerate {
+    #     system = "x86_64-linux";
+    #     modules = [
+    #       ./machines/iso/iso-minimal-fs-in-usb.nix
+    #       {
+    #           isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+    #       }
+    #     ];
+    #     format = "iso";
+    #   };
+    # };
   };
 }
