@@ -39,7 +39,7 @@
   #nvim config
   home.file = with config.lib.file; {
     ".config/nvim" = {
-      source = source = builtins.fetchGit {
+      source = builtins.fetchGit {
         url = "https://github.com/eli-sauvage/nvim-config";
         rev = "29661b76f1127f948da969f7e36b75d6b0a112e9";
       };
