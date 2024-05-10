@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: iso
-          path: result/**
+          path: result/iso/nixos.iso.zst
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M')"
@@ -38,6 +38,6 @@ jobs:
         id: release-snapshot
         uses: ncipollo/release-action@v1
         with:
-          artifacts: result/**
+          artifacts: result/iso/nixos.iso.zst
           tag: ${{ steps.date.outputs.date }}
           commit: main
