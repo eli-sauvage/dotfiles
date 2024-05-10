@@ -61,6 +61,7 @@
         system = "x86_64-linux";
         modules = [
 	        ./machines/iso/iso-configuration.nix
+          inputs.home-manager.nixosModules.default
         ];
       };
     };
