@@ -15,7 +15,7 @@
   ];
 
   isoImage.compressImage = true;
-
+  isoImage.makeEfiBootable = true;
 
   environment.noXlibs = mkForce false;
 
