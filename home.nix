@@ -13,7 +13,6 @@
   home.packages = with pkgs; [
     (nerdfonts.override {fonts = ["UbuntuMono"];})
     #obsidian
-    lazydocker
     #baobab
     du-dust
     ripgrep
@@ -30,17 +29,32 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages =
     pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
+
+  
   programs.neovim = {
     enable = true;
     vimAlias = true;
     defaultEditor = true;
   };
+  #nvim config
+  home.file = with config.lib.file; {
+    ".config/nvim" = {
+      source = source = builtins.fetchGit {
+        url = "https://github.com/eli-sauvage/nvim-config";
+        rev = "29661b76f1127f948da969f7e36b75d6b0a112e9";
+      };
+    };
+  };
+
   programs.firefox.enable = true;
   programs.firefox.package = pkgs.firefox.override {
     cfg.speechSynthesisSupport = false; #saves 600mb
   };
   	
-  programs.tmux.enable = true;
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   programs.zsh = {
     enable = true;
@@ -58,37 +72,6 @@
       ".." = "cd ..";
       "rebuild" = "sudo nixos-rebuild switch --flake ~/.config/nixos/";
     };
-  };
-
-  # dconf.settings = {
-  #   "org/gnome/Console" = {
-  #     use-system-font = false;
-  #     custom-front = "UbuntuMono Nerd Font Mono 11";
-  #   };
-  # };
-
-  #dotfiles
-  home.file = with config.lib.file; {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-    ".config/nvim" = {
-      source = mkOutOfStoreSymlink ./dotfiles/.config/nvim;
-      recursive = true;
-    };
-    ".config/lazydocker/config.yml".source = mkOutOfStoreSymlink ./dotfiles/.config/lazydocker/config.yml;
-    # ".oh-my-zsh" = {
-    #   source = mkOutOfStoreSymlink ./dotfiles/.oh-my-zsh;
-    #   recursive = true;
-    # };
-    # ".zshrc".source = mkOutOfStoreSymlink ./dotfiles/.zshrc;
-    ".tmux" = {
-      source = mkOutOfStoreSymlink ./dotfiles/.tmux;
-      recursive = true;
-    };
-    ".tmux.conf".source = mkOutOfStoreSymlink ./dotfiles/.tmux/.tmux.conf;
-    ".tmux.conf.local".source = mkOutOfStoreSymlink ./dotfiles/.tmux.conf.local;
   };
 
   home.sessionVariables = {
