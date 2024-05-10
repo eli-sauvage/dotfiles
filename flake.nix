@@ -61,6 +61,9 @@
         system = "x86_64-linux";
         modules = [
 	        ./machines/iso/iso-configuration.nix
+          ./chromebook-specific.nix
+          ./keyd
+          ./sound.nix
           inputs.home-manager.nixosModules.default
         ];
       };

@@ -8,10 +8,9 @@
 }: with lib;
 {
   imports = [
-    #"${modulesPath}/installer/cd-dvd/channel.nix"
     "${modulesPath}/profiles/minimal.nix"
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
-    ./chromebook-specific.nix
+    "${modulesPath}/installer/cd-dvd/channel.nix"
   ];
 
   isoImage.compressImage = true;
