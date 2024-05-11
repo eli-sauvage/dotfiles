@@ -1,22 +1,9 @@
-{
+{ 
+  config,
   pkgs,
   lib,
-  config,
-  options,
-  modulesPath,
   ...
-}: with lib;
-{
-  imports = [
-    "${modulesPath}/profiles/minimal.nix"
-    "${modulesPath}/installer/cd-dvd/iso-image.nix"
-    "${modulesPath}/installer/cd-dvd/channel.nix"
-  ];
-
-  isoImage.makeEfiBootable = true;
-
-  environment.noXlibs = mkForce false;
-
+}: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -40,11 +27,7 @@
 
   networking.networkmanager.enable = true;
   users.extraUsers.eli.extraGroups = [ "wheel" ];
-  home-manager = {
-    users = {
-      eli = import ../../home.nix;
-    };
-  };
+
   programs.zsh.enable = true;
   users.users.eli = {
     isNormalUser = true;
@@ -61,14 +44,7 @@
       xfce.enable = true;
     };
     displayManager.defaultSession = "xfce";
-    libinput.touchpad.naturalScrolling = true;
   };
-  #services.hardware.libinput = {
-  #  enable = true;
-  #  touchpad = {
-  #    naturalScrolling = true;
-  #  };
-  #};
 
   # Configure keymap in X11
   services.xserver = {

@@ -6,7 +6,6 @@
   ...
 }:{
   imports = [
-    ./chromebook-specific.nix
     "${modulesPath}/profiles/minimal.nix"
   ];
   fileSystems."/" = lib.mkForce
