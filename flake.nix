@@ -67,6 +67,18 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+      minimal-test-1 = nixos.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+	        ./iso-configuration.nix
+        ];
+      };
+      minimal-test-2 = nixos.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+	        ./iso-configuration.nix
+        ];
+      };
     };
   };
 }
