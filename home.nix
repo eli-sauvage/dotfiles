@@ -49,7 +49,7 @@
   programs.chromimum = {
     enable = true;
     package = pkgs.ungoogled-chromium;
-  }
+  };
   	
   programs.zellij = {
     enable = true;
