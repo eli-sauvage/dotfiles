@@ -46,10 +46,15 @@
     };
   };
 
-  programs.firefox.enable = true;
-  programs.firefox.package = pkgs.firefox.override {
-    cfg.speechSynthesisSupport = false; #saves 600mb
-  };
+  #programs.firefox.enable = true;
+  #programs.firefox.package = pkgs.firefox.override {
+  #  cfg.speechSynthesisSupport = false; #saves 600mb
+  #};
+
+  programs.chromimum = {
+    enable = true;
+    package = pkgs.ungoogled-chromium;
+  }
   	
   programs.zellij = {
     enable = true;
