@@ -46,7 +46,7 @@
   #  cfg.speechSynthesisSupport = false; #saves 600mb
   #};
 
-  programs.chromimum = {
+  programs.chromium = {
     enable = true;
     package = pkgs.ungoogled-chromium;
   };
