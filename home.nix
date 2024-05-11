@@ -7,24 +7,19 @@
 }: {
   home.username = "eli";
   home.homeDirectory = "/home/eli";
-  home.stateVersion = "23.11"; # Don't change
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     (nerdfonts.override {fonts = ["UbuntuMono"];})
     #obsidian
-    #baobab
     du-dust
     ripgrep
     unzip
     trash-cli
     tig
     lazygit
-    #google-cloud-sdk
     htop
-    #flyctl
     github-cli
-    #nodejs_21
   ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages =
@@ -69,7 +64,7 @@
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "docker-compose" "tmux"];
+      plugins = ["git"];
       theme = "robbyrussell";
     };
     shellAliases = {
@@ -83,6 +78,9 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+
+  home.stateVersion = "23.11"; # Don't change
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
