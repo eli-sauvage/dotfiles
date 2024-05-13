@@ -3,7 +3,7 @@
   ...
 }:{
   fileSystems."/" = lib.mkForce
-    { device = "/dev/disk/by-label/usbfs";
+    { device = "/dev/disk/by-label/fsusb";
       fsType = "ext4";
       label = "nixos_usb";
       options = ["defaults" "relatime" "noatime" "discard"];
