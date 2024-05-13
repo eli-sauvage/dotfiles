@@ -12,4 +12,6 @@
     ../../core-config.nix
   ];
   isoImage.makeEfiBootable = true;
+  isoImage.makeUsbBootable = true;
+
 }
