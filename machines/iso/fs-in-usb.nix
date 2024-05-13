@@ -2,6 +2,13 @@
   lib,
   ...
 }:{
+  system.activationScripts = { 
+    stdio.text =
+      ''
+        mkfs.ext4 -L fsusb /dev/disk/by-label/fsusb
+      '';
+  }
+
   fileSystems."/" = lib.mkForce
     { device = "/dev/disk/by-label/fsusb";
       fsType = "ext4";
