@@ -26,6 +26,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-23.11
       - uses: DeterminateSystems/magic-nix-cache-action@v2
       - run: nix build .#nixosConfigurations.live-chromebook-minimal.config.system.build.isoImage -o result-live-chromebook-minimal
+      - run: nix build .#nixosConfigurations.live-chromebook-minimal-fsusb.config.system.build.isoImage -o result-live-chromebook-minimal-fsusb
       - run: nix build .#nixosConfigurations.live-all-hardware-full.config.system.build.isoImage -o result-live-all-hardware-full
       - name: iso artifact
         uses: actions/upload-artifact@v4

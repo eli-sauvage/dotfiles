@@ -22,6 +22,15 @@
           ({isoImage.isoName = "chromebook-minimal.iso";})
         ];
       };
+      live-chromebook-minimal-fsusb = nixos.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./machines/iso/hardware/chromebook.nix
+          ./machines/iso/minimal.nix
+          ./machines/iso/fs-in-usb.nix
+          ({isoImage.isoName = "chromebook-minimal-fsusb.iso";})
+        ];
+      };
       live-all-hardware-full = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
