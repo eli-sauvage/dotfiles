@@ -1,4 +1,6 @@
 {
+  lib,
+  ...
 }:{
   fileSystems."/" = lib.mkForce
     { device = "/dev/disk/by-label/usbfs";
