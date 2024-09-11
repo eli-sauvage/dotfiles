@@ -49,6 +49,8 @@
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
+
+
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -59,6 +61,9 @@
             variant = "";
         };
     };
+ environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    konsole
+  ];
 
   services.displayManager.defaultSession = "plasmax11";
 
@@ -69,6 +74,7 @@
     wget
     git
     xclip
+    kitty
   ];
   virtualisation.docker.enable = true;
   services.tailscale.enable = true;
