@@ -1,14 +1,22 @@
-{ 
+{
   config,
   pkgs,
   lib,
   ...
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "nixos"; # Define your hostname.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 4*1024;
+  } ];
+
   # Set your time zone.
-  time.timeZone = "Asia/Kuala_Lumpur";
+  time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -26,12 +34,12 @@
   };
 
   networking.networkmanager.enable = true;
-  users.extraUsers.eli.extraGroups = [ "wheel" ];
+  users.extraUsers.elicolh.extraGroups = [ "wheel" ];
 
   programs.zsh.enable = true;
-  users.users.eli = {
+  users.users.elicolh = {
     isNormalUser = true;
-    description = "eli";
+    description = "elicolh";
     initialPassword = "mdp";
     extraGroups = ["networkmanager" "wheel" "input" "audio" "docker"];
     packages = with pkgs; [];
@@ -43,14 +51,13 @@
       xterm.enable = false;
       xfce.enable = true;
     };
-    displayManager.defaultSession = "xfce";
+    xkb = {
+      layout = "fr";
+      variant = "";
+    };
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "fr";
-    xkbVariant = "";
-  };
+  services.displayManager.defaultSession = "xfce";
 
   # Configure console keymap
   console.keyMap = "fr";
@@ -58,7 +65,11 @@
   environment.systemPackages = with pkgs; [
     wget
     git
+    xclip
   ];
+  virtualisation.docker.enable = true;
+  services.tailscale.enable = true;
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -66,5 +77,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }

@@ -1,9 +1,9 @@
 {
+  inputs,
   ...
 }:{
-  home-manager = {
-    users = {
-      eli = import ./home.nix;
-    };
-  };
+  home-manager.users.elicolh.imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+    ./home.nix 
+  ];
 }
