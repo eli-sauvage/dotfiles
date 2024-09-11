@@ -15,7 +15,6 @@
     size = 4*1024;
   } ];
 
-  # Set your time zone.
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
@@ -34,6 +33,11 @@
   };
 
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+    };
+  };
   users.extraUsers.elicolh.extraGroups = [ "wheel" ];
 
   programs.zsh.enable = true;
@@ -45,19 +49,18 @@
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
-  services.xserver = {
-    enable = true;
-    desktopManager = {
-      xterm.enable = false;
-      xfce.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+    services.xserver = {
+        enable = true;
+        xkb = {
+            layout = "fr";
+            variant = "";
+        };
     };
-    xkb = {
-      layout = "fr";
-      variant = "";
-    };
-  };
 
-  services.displayManager.defaultSession = "xfce";
+  services.displayManager.defaultSession = "plasmax11";
 
   # Configure console keymap
   console.keyMap = "fr";

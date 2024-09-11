@@ -1,8 +1,19 @@
 { pkgs, lib, config, ...}:
 {
-  programs.neovim = {
+    xdg.configFile.nvim = {
+        source = ./lua;
+        target = "nvim/lua";
+        recursive = true;
+    };
+    programs.neovim = {
         enable = true;
         vimAlias = true;
+        extraLuaConfig = ''
+             binaries = {
+               vue_language_server_path = "${pkgs.vue-language-server}/bin/vue-language-server"
+             }
+            ${builtins.readFile ./init.lua}
+        '';
         plugins = with pkgs.vimPlugins; [
           nvim-treesitter.withAllGrammars
           #colorscheme
@@ -51,21 +62,6 @@
           #formatting, linting and diagnostics
           none-ls-nvim
         ];
-	extraLuaConfig = ''
-	print("bonjour")
-	${builtins.readFile ./init.lua}
-	'';
-
-        # extraConfig = ''
-        #   lua << EOF
-        #     local binaries = {
-        #       tsserver_path = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server"
-        #     }
-        #     vim.api.nvim_command('autocmd VimEnter * lua print("bonjour")')
-        #
-        #     ${builtins.readFile ./config/init.lua}
-        #   EOF
-        # '';
       };
 
       home.packages = with pkgs; [
@@ -96,9 +92,4 @@
         stylua
       ];
 
-      xdg.configFile.nvim = {
-        source = ./lua;
-	target = "nvim/lua";
-        recursive = true;
-      };
     }

@@ -7,15 +7,22 @@ lspconfig.nil_ls.setup({
 })
 
 lspconfig.rust_analyzer.setup({})
+lspconfig.tsserver.setup({})
+
 lspconfig.volar.setup({
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  init_options = {
+    vue = {
+      hybridMode = false,
+    },
+  },
 })
-lspconfig.tsserver.setup({
+--[[ lspconfig.tsserver.setup({
   init_options = {
     plugins = {
       {
         name = "@vue/typescript-plugin",
-        location = binaries.tsserver,
+        location = binaries.vue_language_server_path,
         languages = {"javascript", "typescript", "vue"},
       },
     },
@@ -25,7 +32,7 @@ lspconfig.tsserver.setup({
     "typescript",
     "vue",
   },
-})
+}) ]]
 
 -- lspconfig.opts = function()
 --   local ret = {
