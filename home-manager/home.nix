@@ -25,21 +25,6 @@ lib,
         nodejs_20
     ];
     nixpkgs.config.allowUnfree = true;
-    # nvim config
-    # home.file = with config.lib.file; {
-    #   ".config/nvim" = {
-    #     source = ./neovim;
-    #     # source = builtins.fetchGit {
-    #     #   url = "https://github.com/eli-sauvage/nvim-config";
-    #     #   rev = "29661b76f1127f948da969f7e36b75d6b0a112e9";
-    #     # };
-    #   };
-    # };
-
-    #programs.firefox.enable = true;
-    #programs.firefox.package = pkgs.firefox.override {
-    #  cfg.speechSynthesisSupport = false; #saves 600mb
-    #};
 
     programs.chromium = {
         enable = true;
