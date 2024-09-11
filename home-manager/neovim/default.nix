@@ -4,14 +4,6 @@
         enable = true;
         vimAlias = true;
         plugins = with pkgs.vimPlugins; [
-          #NB:at least, following plugins that some of installed
-          #ones depend on, are not specified, as nix installs
-          #those automatically:
-          # -plenary
-
-          ## core
-          #treesitter
-          #TODO:fix todos
           nvim-treesitter.withAllGrammars
           #colorscheme
           vim-code-dark
@@ -19,44 +11,25 @@
           #icons
           nvim-web-devicons
           #start screen
-          #TODO:maybe switch to something else
-          #seems to be dead, but still works, whatever
           vim-startify
           #status line
           #works best for me, at least, for now
           #TODO:maybe switch to something else
           lightline-vim
-          #pipe the statusline into tmux
-          vim-tpipeline
           #git stuff
           vim-signify
-          #powerful fuzzy search ui engine with some basic modules
           telescope-nvim
-          #native module for fuzzy search
           telescope-fzy-native-nvim
-          #don't hightlight when done searching
-          vim-cool
-          #keep undo history
           undotree
           #keymap hints
           which-key-nvim
-          #spam v/V to select
-          vim-expand-region
-          #jump quickly
-          flash-nvim
           #file tree
           neo-tree-nvim
 
-          ##advanced editing
           #automatic comments, but in lua
-          #TODO:maybe switch to comment.nvim
           kommentary
           #automatic surrounds, but in lua
           nvim-surround
-          #text object engine
-          vim-textobj-user
-          #select the entire buffer
-          vim-textobj-entire
           #autoclose parentheses, quotes, brackets, etc
           vim-closer
 
@@ -76,19 +49,11 @@
           nvim-lspconfig
           cmp-nvim-lsp
           #formatting, linting and diagnostics
-          # null-ls-nvim
           none-ls-nvim
-
-          #misc
-          #color previews
-          vim-hexokinase
-
-          #writing
-          knap
-          orgmode
         ];
 	extraLuaConfig = ''
 	print("bonjour")
+	${builtins.readFile ./init.lua}
 	'';
 
         # extraConfig = ''
@@ -132,7 +97,8 @@
       ];
 
       xdg.configFile.nvim = {
-        source = ./config;
+        source = ./lua;
+	target = "nvim/lua";
         recursive = true;
       };
     }

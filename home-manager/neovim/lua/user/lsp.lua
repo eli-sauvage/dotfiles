@@ -10,12 +10,12 @@ lspconfig.rust_analyzer.setup({})
 lspconfig.volar.setup({
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
 })
-lspconfig.ts_ls.setup({
+lspconfig.tsserver.setup({
   init_options = {
     plugins = {
       {
         name = "@vue/typescript-plugin",
-        location = "",
+        location = binaries.tsserver,
         languages = {"javascript", "typescript", "vue"},
       },
     },
