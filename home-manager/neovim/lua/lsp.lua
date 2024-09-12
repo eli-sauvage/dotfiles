@@ -17,29 +17,13 @@ lspconfig.volar.setup({
     },
   },
 })
---[[ lspconfig.tsserver.setup({
-  init_options = {
-    plugins = {
-      {
-        name = "@vue/typescript-plugin",
-        location = binaries.vue_language_server_path,
-        languages = {"javascript", "typescript", "vue"},
-      },
-    },
-  },
-  filetypes = {
-    "javascript",
-    "typescript",
-    "vue",
-  },
-}) ]]
-
--- lspconfig.opts = function()
---   local ret = {
---     inlay_hints = {
---       enable = true,
---     }
---   }
--- end
---
 vim.lsp.inlay_hint.enable()
+
+require("lspsaga").setup({})
+
+vim.api.nvim_set_keymap( 'n', '<Space>lr', '<cmd>Lspsaga rename<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap( 'n', '<Space>d', '<cmd>Lspsaga diagnostic_jump_next<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap( 'n', '<Space>D', '<cmd>Lspsaga diagnostic_jump_prev<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap( 'n', '<Space>la', '<cmd>Lspsaga code_action<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap( 'n', '<Space>ld', '<cmd>Lspsaga goto_definition<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap( 'n', '<Space>lD', '<cmd>Lspsaga goto_type_definition<cr>', { noremap = true, silent = true })

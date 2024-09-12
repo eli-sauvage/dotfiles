@@ -1,5 +1,3 @@
-----Telescope keybindings
-
 
 
 --Telescope files
@@ -22,13 +20,5 @@ vim.api.nvim_set_keymap( 'n', '<Space>fb', '<cmd>Telescope buffers<cr>',
 	{ noremap = true, silent = true })
 
 
---esc to quit TODO:make it work
--- require("telescope").setup({
---     defaults = {
---         mappings = {
---             i = {
---                 ["<esc>"] = actions.close,
---             },
---         },
---     },
--- })
+vim.keymap.set('n', '<leader>gg', "<cmd>LazyGit<cr>", { noremap = true })
+vim.keymap.set('n', '<leader>x', "<cmd>CloseBuffer<cr>", { noremap = true })

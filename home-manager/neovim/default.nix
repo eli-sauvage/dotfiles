@@ -10,12 +10,13 @@
         vimAlias = true;
         extraLuaConfig = ''
             binaries = {
-              vue_language_server_path = "${pkgs.vue-language-server}/bin/vue-language-server"
+              vue_language_server_path = "${(pkgs.callPackage ./vue-ls.nix {})}/bin/vue-language-server"
             }
             ${builtins.readFile ./init.lua}
         '';
         plugins = with pkgs.vimPlugins; [
             nvim-treesitter.withAllGrammars
+            nvim-treesitter-parsers.vue
             #colorscheme
             vim-code-dark
             nvim-solarized-lua
@@ -23,6 +24,9 @@
             nvim-web-devicons
             #start screen
             vim-startify
+
+            #tabs
+            barbar-nvim
             #status line
             #works best for me, at least, for now
             #TODO:maybe switch to something else
@@ -58,6 +62,7 @@
             cmp_luasnip
             #native lsp config engine, completion source
             nvim-lspconfig
+            lspsaga-nvim
             cmp-nvim-lsp
             #formatting, linting and diagnostics
             none-ls-nvim
@@ -68,7 +73,10 @@
 
     home.packages = with pkgs; [
         rust-analyzer
-        vue-language-server
+        (pkgs.callPackage ./vue-ls.nix {})
+        # vue-language-server.override {
+        #   version = "2.1.6";
+        # }
         typescript
         typescript-language-server
 

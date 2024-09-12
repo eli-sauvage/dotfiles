@@ -1,10 +1,3 @@
---quickly jump to stuff
-local myjump = function()
-    require("flash").jump({
-        highlight = {
-            matches = false,
-        },
-    })
-end
-vim.keymap.set('n', '<CR>', myjump, { noremap = true })
+vim.keymap.set('n', '<Tab>', "<cmd>BufferNext<cr>", { noremap = true, silent = true })
+vim.keymap.set('n', '<S-Tab>', "<cmd>BufferPrevious<cr>", { noremap = true, silent = true })
 

@@ -16,9 +16,9 @@ vim.opt.autoread = true
 
 --expand tab to 4 spaces
 vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 
 
 --don't load netrw
