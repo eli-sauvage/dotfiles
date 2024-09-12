@@ -22,8 +22,6 @@
             nvim-solarized-lua
             #icons
             nvim-web-devicons
-            #start screen
-            vim-startify
 
             #tabs
             barbar-nvim
@@ -56,6 +54,7 @@
             cmp-path
             cmp-zsh
             cmp-nvim-lua
+            cmp-nvim-lsp-signature-help
             #snippet engine, collection and completion source
             luasnip
             friendly-snippets

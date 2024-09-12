@@ -6,10 +6,11 @@ lspconfig.nil_ls.setup({
 	capabilities = capabilities,
 })
 
-lspconfig.rust_analyzer.setup({})
-lspconfig.tsserver.setup({})
+lspconfig.rust_analyzer.setup({capabilities=capabilities})
+lspconfig.tsserver.setup({capabilities=capabilities})
 
 lspconfig.volar.setup({
+  capabilities=capabilities,
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
   init_options = {
     vue = {
