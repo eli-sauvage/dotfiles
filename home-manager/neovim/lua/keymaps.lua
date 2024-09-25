@@ -21,4 +21,4 @@ vim.api.nvim_set_keymap( 'n', '<Space>fb', '<cmd>Telescope buffers<cr>',
 
 
 vim.keymap.set('n', '<leader>gg', "<cmd>LazyGit<cr>", { noremap = true })
-vim.keymap.set('n', '<leader>x', "<cmd>CloseBuffer<cr>", { noremap = true })
+vim.keymap.set('n', '<leader>x', "<cmd>BufferClose<cr>", { noremap = true })
