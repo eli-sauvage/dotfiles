@@ -3,7 +3,6 @@
   buildNpmPackage,
   fetchurl,
 }:
-
 buildNpmPackage rec {
   pname = "vue-language-server";
   version = "2.1.6";
@@ -13,7 +12,7 @@ buildNpmPackage rec {
     hash = "sha256-/bwfssKZRwVLojAC5cQsXsb9qXxzBshFwdezRPr65AY=";
   };
 
-  npmDepsHash = "sha256-SMT8p64rkPXF4eZce6pVFsBf+uBylyqP4vWg5p1uO4M=" ;
+  npmDepsHash = "sha256-SMT8p64rkPXF4eZce6pVFsBf+uBylyqP4vWg5p1uO4M=";
 
   postPatch = ''
     ln -s ${./package-lock.json} package-lock.json
@@ -28,7 +27,7 @@ buildNpmPackage rec {
     homepage = "https://github.com/vuejs/language-tools#readme";
     changelog = "https://github.com/vuejs/language-tools/releases/tag/v${version}";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ friedow ];
+    maintainers = with lib.maintainers; [friedow];
     mainProgram = "vue-language-server";
   };
 }

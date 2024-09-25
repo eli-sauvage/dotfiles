@@ -9,7 +9,7 @@ lspconfig.nil_ls.setup({
 lspconfig.rust_analyzer.setup({ capabilities = capabilities })
 vim.g.rustfmt_autosave = 1
 
-lspconfig.tsserver.setup({capabilities = capabilities})
+lspconfig.tsserver.setup({ capabilities = capabilities })
 lspconfig.volar.setup({
 	capabilities = capabilities,
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },

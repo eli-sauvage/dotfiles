@@ -1,4 +1,3 @@
-require("lazygit").setup {}
+require("lazygit").setup({})
 
-
-vim.keymap.set('n', '<leader>gg', "<cmd>Lazygit<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>gg", "<cmd>Lazygit<cr>", { noremap = true })
