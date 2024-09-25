@@ -1,6 +1,6 @@
 {config, lib, pkgs, ...}:{
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = ["intel"];
+  # hardware.graphics.enable = true;
+  # services.xserver.videoDrivers = ["intel"];
   # hardware.nvidia = {
   #   modesetting.enable = true;
   #   powerManagement.enable = false;

@@ -65,7 +65,7 @@
     konsole
   ];
 
-  services.displayManager.defaultSession = "plasmax11";
+  # services.displayManager.defaultSession = "plasma";
 
   # Configure console keymap
   console.keyMap = "fr";
