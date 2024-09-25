@@ -11,7 +11,7 @@ lib,
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
         (nerdfonts.override {fonts = ["UbuntuMono"];})
-        #obsidian
+        obsidian
         du-dust
         ripgrep
         unzip
@@ -23,13 +23,11 @@ lib,
         google-cloud-sdk
         gcc
         nodejs_20
+        libreoffice-qt6
+        brave
     ];
     nixpkgs.config.allowUnfree = true;
 
-    programs.chromium = {
-        enable = true;
-        package = pkgs.ungoogled-chromium;
-    };
 
     programs.zellij = {
         enable = true;
