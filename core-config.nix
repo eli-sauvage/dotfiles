@@ -74,7 +74,6 @@
     wget
     git
     xclip
-    kitty
   ];
   virtualisation.docker.enable = true;
   services.tailscale.enable = true;
