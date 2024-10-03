@@ -10,10 +10,12 @@
   networking.hostName = "nixos"; # Define your hostname.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  swapDevices = [ {
-    device = "/var/lib/swapfile";
-    size = 4*1024;
-  } ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 4 * 1024;
+    }
+  ];
 
   time.timeZone = "Europe/Paris";
 
@@ -35,10 +37,10 @@
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
-      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+      ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
     };
   };
-  users.extraUsers.elicolh.extraGroups = [ "wheel" ];
+  users.extraUsers.elicolh.extraGroups = ["wheel"];
 
   programs.zsh.enable = true;
   users.users.elicolh = {
@@ -50,18 +52,20 @@
     shell = pkgs.zsh;
   };
 
-
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    autoNumlock = true;
+  };
   services.desktopManager.plasma6.enable = true;
-    services.xserver = {
-        enable = true;
-        xkb = {
-            layout = "fr";
-            variant = "";
-        };
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "fr";
+      variant = "";
     };
- environment.plasma6.excludePackages = with pkgs.kdePackages; [
+  };
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
     konsole
   ];
 
@@ -77,7 +81,6 @@
   ];
   virtualisation.docker.enable = true;
   services.tailscale.enable = true;
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
