@@ -12,3 +12,4 @@ vim.api.nvim_set_keymap("n", "<Space>fb", "<cmd>Telescope buffers<cr>", { norema
 
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>x", "<cmd>BufferClose<cr>", { noremap = true })
+vim.keymap.set("n", "<esc>", "<cmd>noh<cr><esc>", { noremap = true })
