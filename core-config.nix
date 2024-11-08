@@ -6,6 +6,7 @@
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs.config.allowUnfree = true;
+  hardware.enableAllFirmware = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   boot.loader.systemd-boot.enable = true;
