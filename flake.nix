@@ -14,6 +14,7 @@
         modules = [
           ./core-config.nix
           ./sound.nix
+          ./games.nix
           ./machines/dell-g3
           ./home-manager/include-home-manager.nix
           inputs.home-manager.nixosModules.default
