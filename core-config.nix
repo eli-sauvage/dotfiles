@@ -41,7 +41,10 @@
       ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
     };
   };
-  users.extraUsers.elicolh.extraGroups = ["wheel"];
+  users.extraUsers.elicolh.extraGroups = [
+    "wheel"
+    "dialout" #for tty access (arduino flash)
+  ];
 
   programs.zsh.enable = true;
   users.users.elicolh = {
