@@ -1,6 +1,6 @@
 {...}: {
   # bluetooth stuff
-  hardware.bluetooth= {
+  hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
     settings = {
@@ -10,8 +10,7 @@
     };
   };
 
-  # Enable sound with pipewire.
-  # sound.enable = false;
+  # dell-g3: CanonLake card; play hifi quality music (HDMI1, 2, 3, mic1, 2, speaker)
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
