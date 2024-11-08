@@ -25,6 +25,7 @@
     nodejs_20
     libreoffice-qt6
     brave
+    bottles
   ];
   nixpkgs.config.allowUnfree = true;
 
