@@ -9,7 +9,16 @@ lspconfig.nil_ls.setup({
 lspconfig.rust_analyzer.setup({ capabilities = capabilities })
 vim.g.rustfmt_autosave = 1
 
-lspconfig.tsserver.setup({ capabilities = capabilities })
+lspconfig.denols.setup({
+	capabilities = capabilities,
+	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+})
+lspconfig.ts_ls.setup({
+	capabilities = capabilities,
+	root_dir = lspconfig.util.root_pattern("package.json"),
+	single_file_support = false,
+})
+
 lspconfig.volar.setup({
 	capabilities = capabilities,
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
