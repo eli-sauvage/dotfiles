@@ -3,30 +3,38 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  bottles = import ./bottles {inherit pkgs lib;};
+in {
   imports = [./neovim];
   home.username = "elicolh";
   home.homeDirectory = "/home/elicolh";
 
   fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["UbuntuMono"];})
-    obsidian
-    du-dust
-    ripgrep
-    unzip
-    trash-cli
-    tig
-    lazygit
-    htop
-    github-cli
-    google-cloud-sdk
-    gcc
-    nodejs_20
-    libreoffice-qt6
-    brave
-    bottles
-  ];
+  home.packages = with pkgs;
+    [
+      (nerdfonts.override {fonts = ["UbuntuMono"];})
+      obsidian
+      du-dust
+      ripgrep
+      unzip
+      trash-cli
+      tig
+      lazygit
+      htop
+      github-cli
+      google-cloud-sdk
+      gcc
+      nodejs_20
+      libreoffice-qt6
+      brave
+      # bottles
+      # bottles
+    ]
+    ++ [bottles];
+  # ++ [
+  #   (import ./bottles.nix {inherit pkgs lib;})
+  # ];
   nixpkgs.config.allowUnfree = true;
 
   programs.zellij = {
