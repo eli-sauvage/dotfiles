@@ -26,6 +26,7 @@
     libreoffice-qt6
     brave
     bottles
+    lmstudio
     # bottles
   ];
   # ++ [bottles];
