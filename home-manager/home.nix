@@ -27,6 +27,8 @@
     brave
     bottles
     lmstudio
+    ciscoPacketTracer8
+
     # bottles
   ];
   # ++ [bottles];
