@@ -28,7 +28,8 @@ lspconfig.volar.setup({
 		},
 	},
 })
-lspconfig.pyright.setup({})
+lspconfig.pyright.setup({ capabilities = capabilities })
+lspconfig.asm_lsp.setup({ capabilities = capabilities })
 vim.lsp.inlay_hint.enable()
 
 require("lspsaga").setup({})

@@ -80,6 +80,7 @@
     # vue-language-server.override {
     #   version = "2.1.6";
     # }
+    asm-lsp
     typescript
     typescript-language-server
 
