@@ -10,9 +10,11 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["UbuntuMono"];})
+    nerd-fonts.ubuntu
     obsidian
+    pandoc
     du-dust
+    jq
     ripgrep
     unzip
     trash-cli
@@ -27,9 +29,9 @@
     brave
     bottles
     lmstudio
-    ciscoPacketTracer8
-
-    # bottles
+    linuxquota
+    atlauncher
+    (blender.override {cudaSupport = true;})
   ];
   # ++ [bottles];
   # ++ [

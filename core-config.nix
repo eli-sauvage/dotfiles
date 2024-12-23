@@ -78,6 +78,7 @@
   environment.systemPackages = with pkgs; [
     wget
     git
+    gnumake
     xclip
   ];
   virtualisation.docker.enable = true;
