@@ -10,7 +10,7 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    nerd-fonts.ubuntu
+    (nerdfonts.override {fonts = ["UbuntuMono"];})
     obsidian
     pandoc
     du-dust
@@ -25,13 +25,15 @@
     google-cloud-sdk
     gcc
     nodejs_20
-    libreoffice-qt6
-    brave
-    bottles
-    lmstudio
-    linuxquota
-    atlauncher
-    (blender.override {cudaSupport = true;})
+    # libreoffice-qt6
+    # brave
+    # bottles
+    # lmstudio
+    # linuxquota
+    # atlauncher
+    # gparted
+    # nixgl.auto.nixGLDefault
+    #    (blender.override {cudaSupport = true;})
   ];
   # ++ [bottles];
   # ++ [
@@ -43,6 +45,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
+      default_shell = "zsh";
       pane_frames = false;
       copy_command = "xclip -selection clipboard";
     };
@@ -84,25 +87,15 @@
     ];
   };
 
-  programs.kitty = {
+  programs.alacritty = {
     enable = true;
-    settings = {
-      enable_audio_bell = false;
-      open_url_with = "xdg-open";
-      visual_bell_duration = "0.2 linear";
-      # hide_window_decorations = "yes";
-      confirm_os_window_close = "0";
-    };
-    keybindings = {
-      "f11" = "toggle_fullscreen";
-    };
   };
 
   home.sessionVariables = {
     EDITOR = "nvim";
   };
 
-  home.stateVersion = "24.11"; # Don't change
+  home.stateVersion = "25.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

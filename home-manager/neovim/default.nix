@@ -12,6 +12,9 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
+    extraConfig = ''
+      colorscheme codedark
+    '';
     extraLuaConfig = ''
       binaries = {
         vue_language_server_path = "${(pkgs.callPackage ./vue-ls.nix {})}/bin/vue-language-server"
