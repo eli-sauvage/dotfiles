@@ -4,13 +4,16 @@
   lib,
   ...
 }: {
+  nixGL.packages = import <nixgl> {inherit pkgs;};
+
   imports = [./neovim];
   home.username = "elicolh";
   home.homeDirectory = "/home/elicolh";
+  home.sessionPath = ["/home/elicolh/.local/bin"];
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["UbuntuMono"];})
+    nerd-fonts.ubuntu-mono
     obsidian
     pandoc
     du-dust
@@ -25,20 +28,7 @@
     google-cloud-sdk
     gcc
     nodejs_20
-    # libreoffice-qt6
-    # brave
-    # bottles
-    # lmstudio
-    # linuxquota
-    # atlauncher
-    # gparted
-    # nixgl.auto.nixGLDefault
-    #    (blender.override {cudaSupport = true;})
   ];
-  # ++ [bottles];
-  # ++ [
-  #   (import ./bottles.nix {inherit pkgs lib;})
-  # ];
   nixpkgs.config.allowUnfree = true;
 
   programs.zellij = {
@@ -56,7 +46,7 @@
     autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    history.share = false;
+    history.share = true;
     oh-my-zsh = {
       enable = true;
       plugins = ["git"];
@@ -67,6 +57,7 @@
       "la" = "ls -la";
       ".." = "cd ..";
       "rebuild" = "sudo nixos-rebuild switch --flake ~/dotfiles --option eval-cache false";
+      "hmed" = "nvim ~/dotfiles/home-manager/home.nix && home-manager switch -f ~/dotfiles/home-manager/home.nix";
     };
   };
 
@@ -89,6 +80,15 @@
 
   programs.alacritty = {
     enable = true;
+    package = config.lib.nixGL.wrappers.mesa pkgs.alacritty;
+    settings = {
+      terminal.shell = "zellij";
+      colors.primary.foreground = "#FFFFFF";
+      font.normal = {
+        family = "UbuntuMono Nerd Font";
+        style = "Regular";
+      };
+    };
   };
 
   home.sessionVariables = {
