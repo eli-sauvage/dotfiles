@@ -6,7 +6,16 @@ lspconfig.nil_ls.setup({
 	capabilities = capabilities,
 })
 
-lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+lspconfig.rust_analyzer.setup({ 
+    capabilities = capabilities, 
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = {
+                targetDir = true
+            },
+        },
+    },
+})
 vim.g.rustfmt_autosave = 1
 
 lspconfig.denols.setup({
@@ -40,3 +49,4 @@ vim.api.nvim_set_keymap("n", "<Space>D", "<cmd>Lspsaga diagnostic_jump_prev<cr>"
 vim.api.nvim_set_keymap("n", "<Space>la", "<cmd>Lspsaga code_action<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Space>ld", "<cmd>Lspsaga goto_definition<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Space>lD", "<cmd>Lspsaga goto_type_definition<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Space>lf", "<cmd>Lspsaga finder<cr>", { noremap = true, silent = true })

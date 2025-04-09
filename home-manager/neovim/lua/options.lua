@@ -40,7 +40,5 @@ vim.g.update_time = 100
 --timeout to complete mapping or hint
 vim.g.timeoutlen = 300
 
-vim.api.nvim_set_option("clipboard", "unnamedplus")
-
 --go fast (replaces impatient)
 vim.loader.enable()
