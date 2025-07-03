@@ -31,6 +31,7 @@ null_ls.setup({
 		forters.alejandra,
 		forters.stylua,
 		forters.prettier,
+		forters.black,
 	},
 	-- format on save
 	on_attach = function(client, bufnr)

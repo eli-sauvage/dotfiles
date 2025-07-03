@@ -24,6 +24,7 @@
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter.withAllGrammars
       nvim-treesitter-parsers.vue
+      nvim-treesitter-parsers.hcl
       #colorscheme
       vim-code-dark
       nvim-solarized-lua
@@ -88,6 +89,7 @@
     typescript-language-server
 
     pyright
+    black
 
     #x clipboard integration
     xclip
@@ -109,5 +111,7 @@
     #lua
     lua53Packages.luacheck
     stylua
+    checkmake
+
   ];
 }
