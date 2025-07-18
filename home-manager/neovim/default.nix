@@ -75,11 +75,14 @@
       none-ls-nvim
 
       lazygit-nvim
+
+      rustaceanvim
+      nvim-dap
     ];
   };
 
   home.packages = with pkgs; [
-    rust-analyzer
+    # rust-analyzer
     (pkgs.callPackage ./vue-ls.nix {})
     # vue-language-server.override {
     #   version = "2.1.6";
@@ -111,7 +114,9 @@
     #lua
     lua53Packages.luacheck
     stylua
+    #make
     checkmake
 
+    lldb
   ];
 }

@@ -6,7 +6,7 @@ lspconfig.nil_ls.setup({
 	capabilities = capabilities,
 })
 
-lspconfig.rust_analyzer.setup({ 
+--[[ lspconfig.rust_analyzer.setup({ 
     capabilities = capabilities, 
     settings = {
         ["rust-analyzer"] = {
@@ -15,7 +15,7 @@ lspconfig.rust_analyzer.setup({
             },
         },
     },
-})
+}) ]]
 vim.g.rustfmt_autosave = 1
 
 lspconfig.denols.setup({
