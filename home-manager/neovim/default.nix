@@ -15,10 +15,10 @@
     extraConfig = ''
       colorscheme codedark
     '';
+    #      binaries = {
+    #        vue_language_server_path = "${(pkgs.callPackage ./vue-ls.nix {})}/bin/vue-language-server"
+    #      }
     extraLuaConfig = ''
-      binaries = {
-        vue_language_server_path = "${(pkgs.callPackage ./vue-ls.nix {})}/bin/vue-language-server"
-      }
       ${builtins.readFile ./init.lua}
     '';
     plugins = with pkgs.vimPlugins; [
@@ -82,8 +82,7 @@
   };
 
   home.packages = with pkgs; [
-    # rust-analyzer
-    (pkgs.callPackage ./vue-ls.nix {})
+    #(pkgs.callPackage ./vue-ls.nix {})
     # vue-language-server.override {
     #   version = "2.1.6";
     # }

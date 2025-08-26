@@ -4,7 +4,15 @@
   lib,
   ...
 }: {
+  # to install: `nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl && nix-channel --update`
   nixGL.packages = import <nixgl> {inherit pkgs;};
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   imports = [./neovim];
   home.username = "elicolh";
@@ -17,8 +25,6 @@
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     nerd-fonts.ubuntu-mono
-    pre-commit
-    libxml2
     du-dust
     jq
     ripgrep
@@ -30,6 +36,7 @@
     github-cli
     google-cloud-sdk
     nodejs_20
+    gcc
   ];
   nixpkgs.config.allowUnfree = true;
 
@@ -81,6 +88,17 @@
         family = "UbuntuMono Nerd Font";
         style = "Regular";
       };
+      keyboard.bindings = [
+        {
+          key = "F11";
+          action = "ToggleFullscreen";
+        }
+        {
+          key = "Backspace";
+          mods = "Control";
+          chars = "\\u0017";
+        }
+      ];
     };
   };
 
