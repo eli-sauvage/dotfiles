@@ -37,6 +37,8 @@
     google-cloud-sdk
     nodejs_20
     gcc
+    openssl
+    pkg-config
   ];
   nixpkgs.config.allowUnfree = true;
 
@@ -104,6 +106,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
   };
 
   home.stateVersion = "25.05";
