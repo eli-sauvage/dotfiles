@@ -15,8 +15,8 @@
   };
 
   imports = [./neovim];
-  home.username = "elicolh";
-  home.homeDirectory = "/home/elicolh";
+  home.username = "esauvage";
+  home.homeDirectory = "/home/esauvage";
   home.sessionPath = [
     "$HOME/.local/bin"
     "$HOME/.cargo/bin"
@@ -106,7 +106,8 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    FS3_COMPILER_IMAGE = "nexus.ic-cyber.lab/repository/docker-hosted/fs3compiler-rustc-1.91-v0.1:latest";
   };
 
   home.stateVersion = "25.05";

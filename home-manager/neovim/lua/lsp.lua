@@ -2,7 +2,8 @@ local lspconfig = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.nil_ls.setup({
+vim.lsp.enable("nil_ls")
+vim.lsp.config("nil_ls", {
 	capabilities = capabilities,
 })
 
@@ -26,7 +27,10 @@ vim.g.rustaceanvim = {
 		end,
 		default_settings = {
 			-- rust-analyzer language server configuration
-			["rust-analyzer"] = {},
+			["rust-analyzer"] = {
+				check = { command = "check" },
+				cargo = { targetDir = true },
+			},
 		},
 	},
 	-- DAP configuration
@@ -35,27 +39,33 @@ vim.g.rustaceanvim = {
 
 vim.g.rustfmt_autosave = 1
 
-lspconfig.denols.setup({
+vim.lsp.enable("denols")
+vim.lsp.config("denols", {
 	capabilities = capabilities,
 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 })
-lspconfig.ts_ls.setup({
+vim.lsp.enable("ts_ls")
+vim.lsp.config("ts_ls", {
 	capabilities = capabilities,
 	root_dir = lspconfig.util.root_pattern("package.json"),
 	single_file_support = false,
 })
 
-lspconfig.volar.setup({
+vim.lsp.enable("vue_ls")
+vim.lsp.config("vue_ls", {
 	capabilities = capabilities,
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+	--[[ filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 	init_options = {
 		vue = {
 			hybridMode = false,
 		},
-	},
+	}, ]]
 })
-lspconfig.pyright.setup({ capabilities = capabilities })
-lspconfig.asm_lsp.setup({ capabilities = capabilities })
+vim.lsp.enable("pyright")
+vim.lsp.config("pyright", { capabilities = capabilities })
+
+vim.lsp.enable("asm_lsp")
+vim.lsp.config("asm_lsp", { capabilities = capabilities })
 vim.lsp.inlay_hint.enable()
 
 require("lspsaga").setup({})
